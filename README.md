@@ -83,16 +83,17 @@ ok
 ok
 ```
 
-Complex arithmatic and operations:
+Complex arithmatic and operations (note that ``complex/2`` is an alias for
+``new/2``; it just looks nicer when not using the module name):
 
 ```cl
-> (add (new 4 2) (i))
+> (add (complex 4 2) (i))
 #(complex 4 3)
-> (sub (new 4 2) (i))
+> (sub (complex 4 2) (i))
 #(complex 4 1)
-> (mult (new 4 2) (i))
+> (mult (complex 4 2) (i))
 #(complex -2 4)
-> (div (new 4 2) (i))
+> (div (complex 4 2) (i))
 #(complex 2.0 -4.0)
 ```
 
@@ -114,10 +115,10 @@ true
 ```
 
 ```cl
-> (print (sqrt (new -1 0)))
+> (print (sqrt (complex -1 0)))
 0.0 +1.0i
 ok
-> (eq (sqrt (new -1 0)) (i))
+> (eq (sqrt (complex -1 0)) (i))
 true
 ```
 
@@ -128,23 +129,28 @@ See the [unit tests](tests) for a greater number of examples.
 The list of functions supported by the complex library are as follows:
 
 ```cl
+complex:->str/1
+complex:abs/1
+complex:abs/2
+complex:add/2
+complex:complex/2
+complex:conj/1
+complex:div/2
+complex:eq/2
+complex:exp/2
+complex:i/0
+complex:inv/1
+complex:modulus/1
+complex:mult/2
+complex:neg/1
 complex:new/0
 complex:new/1
 complex:new/2
-complex:add/2
-complex:div/2
-complex:mult/2
-complex:sub/2
-complex:abs/1
-complex:conj/1
-complex:eq/2
-complex:inv/1
-complex:modulus/1
-complex:neg/1
+complex:one/0
+complex:print/1
 complex:sign/1
 complex:sqrt/1
-complex:print/1
-complex:->str/1
+complex:sub/2
 ```
 
 This list is just part of what's actually planned and in-progress. More coming soon!

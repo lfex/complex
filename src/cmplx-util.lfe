@@ -52,4 +52,6 @@
    (lfe_io:format "complex:~p/~p~n" `(,func-name ,arity))))
 
 (defun print-api-functions ()
-  (lists:foreach #'print-function/1 (get-api-functions)))
+  (lists:foreach
+   #'print-function/1
+   (lists:sort (get-api-functions))))
