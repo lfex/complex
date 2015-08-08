@@ -1,8 +1,10 @@
 (defmodule cmplx-exp
-  (export (noop 0)
-          ))
+  (export (exp 2)))
 
 (include-lib "complex/include/data-types.lfe")
 
-(defun noop ()
-  'noop)
+(defun exp (z n)
+  (lists:foldl (lambda (x acc)
+                 (complex:mult acc x))
+               (complex:unity)
+               (lists:duplicate n z)))
