@@ -1,14 +1,22 @@
 (defmodule cmplx-ops
-  (export (sign 1)
+  (export (one 0)
+          (i 0)
+          (sign 1)
           (neg 1)
           (eq 2)
           (conj 1)
           (modulus 1)
-          (abs 1)
+          (abs 1) (abs 2)
           (inv 1)
           (sqrt 1)))
 
 (include-lib "complex/include/data-types.lfe")
+
+(defun one ()
+  (complex:new 1 0))
+
+(defun i ()
+  (complex:new 0 1))
 
 (defun sign
   ((x) (when (< x 0))
@@ -37,7 +45,8 @@
 (defun eq
   (((match-complex real r1 img i1)
     (match-complex real r2 img i2))
-   (if (and (=:= r1 r2) (=:= i1 i2))
+   (if (and (=:= (float r1) (float r2))
+            (=:= (float i1) (float i2)))
      'true
      'false)))
 
@@ -57,6 +66,10 @@
 
 (defun abs (cmplx)
   (math:sqrt (complex-real (modulus cmplx))))
+
+(defun abs
+  ((cmplx #(complex))
+   (complex:new (abs cmplx) 0)))
 
 ;; Inverse:
 ;;
