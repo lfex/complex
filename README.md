@@ -19,15 +19,14 @@ Just add it to your ``rebar.config`` deps:
   {deps, [
     ...
     {complex, ".*",
-      {git, "git@github.com:YOURNAME/complex.git", "master"}}
+      {git, "git@github.com:lfex/complex.git", "master"}}
       ]}.
 ```
 
 And then do the usual:
 
 ```bash
-    $ rebar get-deps
-    $ rebar compile
+    $ make
 ```
 
 
