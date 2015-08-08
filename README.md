@@ -146,3 +146,5 @@ complex:sqrt/1
 complex:print/1
 complex:->str/1
 ```
+
+This list is just part of what's actually planned and in-progress. More coming soon!
