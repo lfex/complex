@@ -1,6 +1,5 @@
 (defmodule cmplx
-  (export (new 0) (new 1) (new 2)
-          ))
+  (export (new 0) (new 1) (new 2)))
 
 (include-lib "complex/include/data-types.lfe")
 

@@ -37,4 +37,25 @@ Add content to me here!
 
 ## API
 
-Add content to me here!
+The list of functions supported by the complex library are as follows:
+
+```cl
+complex:new/0
+complex:new/1
+complex:new/2
+complex:add/2
+complex:div/2
+complex:mult/2
+complex:sub/2
+complex:abs/1
+complex:conj/1
+complex:eq/2
+complex:inv/1
+complex:modulus/1
+complex:neg/1
+complex:sign/1
+complex:sqrt/1
+complex:print/1
+complex:->str/1
+complex:->str/3
+```
