@@ -33,7 +33,96 @@ And then do the usual:
 
 ## Usage
 
-Add content to me here!
+Create some new complex numbers and print them:
+
+```cl
+> (set z1 (complex:new 4 -2))
+#(complex 4 -2)
+> (set z2 (complex:new 4 2))
+#(complex 4 2)
+> (complex:print z1)
+4 -2i
+ok
+> (complex:print z2)
+4 +2i
+ok
+```
+
+Convenience functions:
+
+```cl
+> (complex:one)
+#(complex 1 0)
+> (complex:i)
+#(complex 0 1)
+```
+
+For the rest of the usage, we'll just ``slurp`` so that the calls are easier to type:
+
+```cl
+> (slurp "src/complex.lfe")
+#(ok complex)
+```
+
+Using exponents to demonstrate the cyclic values of the powers of *i*:
+
+```cl
+> (print (exp (i) 0))
+1 +0i
+ok
+> (print (exp (i) 1))
+0 +1i
+ok
+> (print (exp (i) 2))
+-1 +0i
+ok
+> (print (exp (i) 3))
+0 -1i
+ok
+> (print (exp (i) 4))
+1 +0i
+ok
+```
+
+Complex arithmatic and operations:
+
+```cl
+> (add (new 4 2) (i))
+#(complex 4 3)
+> (sub (new 4 2) (i))
+#(complex 4 1)
+> (mult (new 4 2) (i))
+#(complex -2 4)
+> (div (new 4 2) (i))
+#(complex 2.0 -4.0)
+```
+
+```cl
+> (conj z2)
+#(complex 4 -2)
+> (eq z1 z2)
+false
+> (eq z1 (conj z2))
+true
+> (inv z1)
+#(complex 0.2 0.1)
+> (inv z2)
+#(complex 0.2 -0.1)
+> (abs z1)
+4.47213595499958
+> (abs z1 #(complex))
+#(complex 4.47213595499958 0)
+```
+
+```cl
+> (print (sqrt (new -1 0)))
+0.0 +1.0i
+ok
+> (eq (sqrt (new -1 0)) (i))
+true
+```
+
+See the [unit tests](tests) for a greater number of examples.
 
 ## API
 
