@@ -9,3 +9,11 @@ bin/expm
 *.dump
 .rebar
 logs/*
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*

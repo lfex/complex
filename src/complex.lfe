@@ -1,5 +1,7 @@
 (defmodule complex
   (export all))
 
-(defun my-adder (x y)
-  (+ x (+ y 1)))
+(include-lib "complex/include/api.lfe")
+
+(defun loaded-complex ()
+  'ok)
