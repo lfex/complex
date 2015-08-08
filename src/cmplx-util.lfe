@@ -1,7 +1,7 @@
 (defmodule cmplx-util
   (export (get-version 0)
           (get-versions 0)
-          (->str 1) (->str 3)
+          (->str 1)
           (print-api-functions 0)))
 
 (include-lib "complex/include/data-types.lfe")

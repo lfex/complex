@@ -57,5 +57,4 @@ complex:sign/1
 complex:sqrt/1
 complex:print/1
 complex:->str/1
-complex:->str/3
 ```
