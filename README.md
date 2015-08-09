@@ -135,9 +135,15 @@ complex:abs/2
 complex:add/2
 complex:complex/2
 complex:conj/1
+complex:cos/1
+complex:cosh/1
+complex:cot/1
+complex:coth/1
+complex:csc/1
+complex:csch/1
 complex:div/2
 complex:eq/2
-complex:exp/2
+complex:exp/1
 complex:i/0
 complex:inv/1
 complex:modulus/1
@@ -147,10 +153,17 @@ complex:new/0
 complex:new/1
 complex:new/2
 complex:one/0
+complex:pow/2
 complex:print/1
+complex:sec/1
+complex:sech/1
 complex:sign/1
+complex:sin/1
+complex:sinh/1
 complex:sqrt/1
 complex:sub/2
+complex:tan/1
+complex:tanh/1
 ```
 
 This list is just part of what's actually planned and in-progress. More coming soon!
