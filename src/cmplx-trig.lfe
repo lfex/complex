@@ -37,6 +37,13 @@
 (defun cot (z)
   (cot z '()))
 
+;; Sometimes it's useful to set a tolerance level for what floating points
+;; numbers should be considered 0. This is done in the unit tests for this
+;; library, assuming any float less that 1.0e-15 to be a zero. The following
+;; versions of the trig functions take an options list, this is passed to new/3
+;; as an options record, and if the field 'tol' is present and set to something
+;; other than 'undefined', a tolerance check will be performed.
+
 (defun sin
   (((match-complex real r img i) opts)
    (complex:new (* (math:sin r) (math:cosh i))
