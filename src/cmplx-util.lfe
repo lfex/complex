@@ -2,7 +2,8 @@
   (export (get-version 0)
           (get-versions 0)
           (->str 1)
-          (print-api-functions 0)))
+          (print-api-functions 0)
+          (zero-check 2)))
 
 (include-lib "complex/include/data-types.lfe")
 
@@ -35,6 +36,7 @@
                  get-version
                  get-versions
                  loaded-complex-data-types
+                 loaded-complex-options
                  loaded-complex-api
                  loaded-complex
                  print-api-functions)))
@@ -55,3 +57,8 @@
   (lists:foreach
    #'print-function/1
    (lists:sort (get-api-functions))))
+
+(defun zero-check (num tol)
+  (if (< (abs num) tol)
+    0
+    num))
