@@ -10,5 +10,5 @@
 ;; 3-5i
 ;; ok
 
-(defun print (cmplx)
-  (io:format (++ (cmplx-util:->str cmplx) "~n")))
+(defun print (z)
+  (io:format (++ (cmplx-util:->str z) "~n")))

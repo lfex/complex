@@ -8,14 +8,14 @@
 
 ;; Setup:
 ;;
-;; > (set c1 (complex:new 1 2))
+;; > (set z1 (complex:new 1 2))
 ;; #(complex 1 2)
-;; > (set c2 (complex:new 3 -5))
+;; > (set z2 (complex:new 3 -5))
 ;; #(complex 3 -5)
 
 ;; Adding:
 ;;
-;; > (complex:add c1 c2)
+;; > (complex:add z1 z2)
 ;; #(complex 4 -3)
 ;;
 (defun add
@@ -25,11 +25,11 @@
 
 ;; Subtracting:
 ;;
-;; > (complex:sub c1 c2)
+;; > (complex:sub z1 z2)
 ;; #(complex -2 7)
-;; > (complex:sub c2 c1)
+;; > (complex:sub z2 z1)
 ;; #(complex 2 -7)
-;; > (complex:sub c1 c1)
+;; > (complex:sub z1 z1)
 ;; #(complex 0 0)
 ;;
 (defun sub
@@ -39,7 +39,7 @@
 
 ;; Multiplying
 ;;
-;; > (complex:* c1 c2)
+;; > (complex:* z1 z2)
 ;; #(complex 13 -11)
 ;;
 (defun mult
@@ -50,13 +50,13 @@
 
 ;; Division:
 ;;
-;; > (complex:div c1 c2)
+;; > (complex:div z1 z2)
 ;; #(complex -0.20588235294117646 0.3235294117647059)
-;; > (complex:div c2 c1)
+;; > (complex:div z2 z1)
 ;; #(complex -1.4 -2.2)
 ;;
-(defun div (c1 c2)
-  (let* ((denom (complex-real (cmplx-ops:modulus c2)))
-         (c3 (mult c1 (cmplx-ops:conj c2))))
-    (complex:new (/ (complex-real c3) denom)
-                 (/ (complex-img c3) denom))))
+(defun div (z1 z2)
+  (let* ((denom (complex-real (cmplx-ops:modulus z2)))
+         (z3 (mult z1 (cmplx-ops:conj z2))))
+    (complex:new (/ (complex-real z3) denom)
+                 (/ (complex-img z3) denom))))

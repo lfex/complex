@@ -26,9 +26,9 @@
 
 ;; Negation:
 ;;
-;; > (complex:neg c1)
+;; > (complex:neg z1)
 ;; #(complex -1 -2)
-;; > (complex:neg c2)
+;; > (complex:neg z2)
 ;; #(complex -3 5)
 
 (defun neg
@@ -37,9 +37,9 @@
 
 ;; Equality:
 ;;
-;; > (complex:eq c1 c2)
+;; > (complex:eq z1 z2)
 ;; false
-;; > (complex:eq c1 (complex:new 1 2))
+;; > (complex:eq z1 (complex:new 1 2))
 ;; true
 
 (defun eq
@@ -52,49 +52,49 @@
 
 ;; Conjugate:
 ;;
-;; > (complex:conj c1)
+;; > (complex:conj z1)
 ;; #(complex 1 -2)
-;; > (complex:conj c2)
+;; > (complex:conj z2)
 ;; #(complex 3 5)
 
 (defun conj
   (((match-complex real r img i))
    (complex:new r (* -1 i))))
 
-(defun modulus (cmplx)
-  (cmplx-arith:mult cmplx (conj cmplx)))
+(defun modulus (z)
+  (cmplx-arith:mult z (conj z)))
 
-(defun abs (cmplx)
-  (math:sqrt (complex-real (modulus cmplx))))
+(defun abs (z)
+  (math:sqrt (complex-real (modulus z))))
 
 (defun abs
-  ((cmplx #(complex))
-   (complex:new (abs cmplx) 0)))
+  ((z #(complex))
+   (complex:new (abs z) 0)))
 
 ;; Inverse:
 ;;
-;; > (complex:inv c1)
+;; > (complex:inv z1)
 ;; #(complex 0.2 -0.4)
-;; > (complex:inv c2)
+;; > (complex:inv z2)
 ;; #(complex 0.08823529411764706 0.14705882352941177)
 
-(defun inv (cmplx)
-  (complex:div (conj cmplx) (modulus cmplx)))
+(defun inv (z)
+  (complex:div (conj z) (modulus z)))
 
 ;; Square Root:
 ;;
 ;; > (complex:sqrt (complex:new -1 0))
 ;; #(complex 0.0 1.0)
-;; > (complex:sqrt c1)
+;; > (complex:sqrt z1)
 ;; #(complex 1.7320508075688772 1.4142135623730951)
-;; > (complex:sqrt c2)
+;; > (complex:sqrt z2)
 ;; #(complex 4.301162633521313 -3.9370039370059056)
 
 (defun sqrt
-  (((= (match-complex real r img i) c))
-   (let* ((abs-c (abs c))
+  (((= (match-complex real r img i) z))
+   (let* ((abs-z (abs z))
           (neg-r (* -1 r))
-          (r2 (math:sqrt (/ (+ r abs-c) 2)))
-          (i2 (* (sign i) (math:sqrt (/ (+ neg-r abs-c) 2)))))
+          (r2 (math:sqrt (/ (+ r abs-z) 2)))
+          (i2 (* (sign i) (math:sqrt (/ (+ neg-r abs-z) 2)))))
      (complex:new r2 i2))))
 
