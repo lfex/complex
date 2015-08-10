@@ -1,6 +1,7 @@
 (defmodule cmplx
   (export (new 0) (new 1) (new 2) (new 3)
-          (complex 2)))
+          (complex 2)
+          (complex? 1)))
 
 (include-lib "complex/include/data-types.lfe")
 (include-lib "complex/include/options.lfe")
@@ -29,3 +30,6 @@
   "This function is an alias for new/2 and is provided for aesthetic reasons:
   it will look nicer in the REPL calling (complex 1 2) than (new 1 2)."
   (new r i))
+
+(defun complex? (z)
+  (is-complex z))

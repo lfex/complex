@@ -134,6 +134,7 @@ complex:abs/1
 complex:abs/2
 complex:add/2
 complex:complex/2
+complex:complex?/1
 complex:conj/1
 complex:cos/1
 complex:cos/2
