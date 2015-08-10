@@ -83,8 +83,7 @@ ok
 ok
 ```
 
-Complex arithmatic and operations (note that ``complex/2`` is an alias for
-``new/2``; it just looks nicer when not using the module name):
+Complex arithmatic and operations:
 
 ```cl
 > (add (complex 4 2) (i))
@@ -96,6 +95,9 @@ Complex arithmatic and operations (note that ``complex/2`` is an alias for
 > (div (complex 4 2) (i))
 #(complex 2.0 -4.0)
 ```
+
+Note that ``complex/2`` is an alias for ``new/2``; it just looks nicer
+when not using the module name.
 
 ```cl
 > (conj z2)
