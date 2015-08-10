@@ -146,6 +146,7 @@ complex:div/2
 complex:eq/2
 complex:exp/1
 complex:i/0
+complex:imag/1
 complex:inv/1
 complex:modulus/1
 complex:mult/2
@@ -157,6 +158,7 @@ complex:new/3
 complex:one/0
 complex:pow/2
 complex:print/1
+complex:real/1
 complex:sec/1
 complex:sec/2
 complex:sign/1

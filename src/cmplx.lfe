@@ -1,7 +1,9 @@
 (defmodule cmplx
   (export (new 0) (new 1) (new 2) (new 3)
           (complex 2)
-          (complex? 1)))
+          (complex? 1)
+          (real 1)
+          (imag 1)))
 
 (include-lib "complex/include/data-types.lfe")
 (include-lib "complex/include/options.lfe")
@@ -33,3 +35,9 @@
 
 (defun complex? (z)
   (is-complex z))
+
+(defun real (z)
+  (complex-real z))
+
+(defun imag (z)
+  (complex-img z))
