@@ -47,6 +47,17 @@ ok
 ok
 ```
 
+You can also create a new complex number using a string value:
+
+```cl
+> (complex:new "4 -2i")
+#(complex 4 -2)
+> (complex:new "4 2i")
+#(complex 4 2)
+> (complex:new "4 +2i")
+#(complex 4 2)
+```
+
 Convenience functions:
 
 ```cl
