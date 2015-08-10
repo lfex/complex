@@ -1,10 +1,10 @@
 (defmodule cmplx-trig
-  (export (cos 1) (cos 2)
-          (sin 1) (sin 2)
-          (tan 1) (tan 2)
-          (csc 1) (csc 2)
-          (sec 1) (sec 2)
-          (cot 1) (cot 2)
+  (export (cos 1)
+          (sin 1)
+          (tan 1)
+          (csc 1)
+          (sec 1)
+          (cot 1)
           ;; XXX these are broken right now
           ;; (cosh 1)
           ;; (sinh 1)
@@ -19,58 +19,31 @@
 
 ;; Trigonometric functions
 
-(defun sin (z)
-  (sin z '()))
-
-(defun cos (z)
-  (sin z '()))
-
-(defun tan (z)
-  (tan z '()))
-
-(defun csc (z)
-  (csc z '()))
-
-(defun sec (z)
-  (sec z '()))
-
-(defun cot (z)
-  (cot z '()))
-
-;; Sometimes it's useful to set a tolerance level for what floating points
-;; numbers should be considered 0. This is done in the unit tests for this
-;; library, assuming any float less that 1.0e-15 to be a zero. The following
-;; versions of the trig functions take an options list, this is passed to new/3
-;; as an options record, and if the field 'tol' is present and set to something
-;; other than 'undefined', a tolerance check will be performed.
-
 (defun sin
-  (((match-complex real r img i) opts)
+  (((match-complex real r img i))
    (complex:new (* (math:sin r) (math:cosh i))
-                (* (math:cos r) (math:sinh i))
-                (opts->rec opts))))
+                (* (math:cos r) (math:sinh i)))))
 
 (defun cos
-  (((match-complex real r img i) opts)
+  (((match-complex real r img i))
    (complex:new (* (math:cos r) (math:cosh i))
-                (* -1 (math:sin r) (math:sinh i))
-                (opts->rec opts))))
+                (* -1 (math:sin r) (math:sinh i)))))
 
-(defun tan (z opts)
-  (complex:div (sin z opts)
-               (cos z opts)))
+(defun tan (z)
+  (complex:div (sin z)
+               (cos z)))
 
-(defun csc (z opts)
+(defun csc (z)
   (complex:div (complex:one)
-               (sin z opts)))
+               (sin z)))
 
-(defun sec (z opts)
+(defun sec (z)
   (complex:div (complex:one)
-               (cos z opts)))
+               (cos z)))
 
-(defun cot (z opts)
+(defun cot (z)
   (complex:div (complex:one)
-               (tan z opts)))
+               (tan z)))
 
 ;; Hyperbolic trigonometric functions
 

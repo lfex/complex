@@ -4,6 +4,8 @@
           (sign 1)
           (neg 1)
           (eq 2)
+          (eq 3)
+          (eeq 2)
           (conj 1)
           (modulus 1)
           (abs 1) (abs 2)
@@ -11,6 +13,7 @@
           (sqrt 1)))
 
 (include-lib "complex/include/data-types.lfe")
+(include-lib "complex/include/options.lfe")
 
 (defun one ()
   (complex:new 1 0))
@@ -43,12 +46,50 @@
 ;; true
 
 (defun eq
+  "Equal."
   (((match-complex real r1 img i1)
     (match-complex real r2 img i2))
-   (if (and (=:= (float r1) (float r2))
-            (=:= (float i1) (float i2)))
+   (if (and (== r1 r2)
+            (== i1 i2))
      'true
      'false)))
+
+(defun eq
+  "Equal, within a tolerance.
+
+  Sometimes it's useful to set a tolerance level for what floating points
+  numbers should be considered 0. This is done in the unit tests for this
+  library, assuming any float less that 1.0e-15 to be a zero, e.g. The
+  following version of the equality function take an options list or
+  options record, and if the field 'tol' is present and set to something
+  other than 'undefined', a tolerance check will be performed."
+  ((z1 z2 '())
+   (eq z1 z2))
+  ((z1 z2 opts) (when (is_list opts))
+   (eq z1 z2 (opts->rec opts)))
+  ((z1 z2 (match-opts tol 'undefined))
+   (eq z1 z2))
+  (((match-complex real r1 img i1)
+    (match-complex real r2 img i2)
+    (match-opts tol tol))
+   (if (and (== (complex:zero-check r1 tol)
+                (complex:zero-check r2 tol))
+            (== (complex:zero-check i1 tol)
+                (complex:zero-check i2 tol)))
+     'true
+     'false))
+  ((z1 z2 _)
+   (eq z1 z2)))
+
+(defun eeq
+  "Exactly equal."
+  (((match-complex real r1 img i1)
+    (match-complex real r2 img i2))
+   (if (and (=:= r1 r2)
+            (=:= i1 i2))
+     'true
+     'false)))
+
 
 ;; Conjugate:
 ;;
