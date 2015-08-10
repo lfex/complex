@@ -39,6 +39,7 @@
                  loaded-complex-options
                  loaded-complex-api
                  loaded-complex
+                 zero-check
                  print-api-functions)))
      (if (lists:member func-name skip)
        'false
