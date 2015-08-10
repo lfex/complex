@@ -1,8 +1,7 @@
 (defmodule cmplx-exp
   (export (pow 2)
           (exp 1)
-          ;;(ln 1)
-          ))
+          (ln 1)))
 
 (include-lib "complex/include/data-types.lfe")
 
@@ -17,6 +16,7 @@
    (complex:new (* (math:exp r) (math:cos i))
                 (* (math:exp r) (math:sin i)))))
 
-;; (defun ln
-;;   (((match-complex real r img i))
-;;    (+ (math:log r) i)))
+(defun ln
+  (((= (match-complex real r img i) z))
+   (complex:new (math:log (complex:abs z))
+                (complex:arg z))))

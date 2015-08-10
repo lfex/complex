@@ -10,6 +10,8 @@
           (modulus 1)
           (abs 1) (abs 2)
           (inv 1)
+          (arg 1)
+          (phase 1)
           (sqrt 1)))
 
 (include-lib "complex/include/data-types.lfe")
@@ -121,6 +123,13 @@
 
 (defun inv (z)
   (complex:div (conj z) (modulus z)))
+
+(defun arg
+  (((match-complex real r img i))
+   (math:atan2 i r)))
+
+(defun phase (z)
+  (arg z))
 
 ;; Square Root:
 ;;
