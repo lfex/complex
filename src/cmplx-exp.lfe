@@ -8,8 +8,8 @@
 
 (defun pow (z n)
   (lists:foldl (lambda (x acc)
-                 (complex:mult acc x))
-               (complex:unity)
+                 (complex:mult x acc))
+               (complex:one)
                (lists:duplicate n z)))
 
 (defun exp
