@@ -13,3 +13,24 @@
             (complex:->str (unit-cmplx-tests:c3)))
   (is-equal '("-4" 32 "" "-2" 105)
             (complex:->str (unit-cmplx-tests:c4))))
+
+
+(deftest str->
+  ;; Just real
+  (is-equal #(complex 1 0) (complex:str-> "1"))
+  (is-equal #(complex 10 0) (complex:str-> "10"))
+  (is-equal #(complex -1 0) (complex:str-> "-1"))
+  (is-equal #(complex -10 0) (complex:str-> "-10"))
+  (is-equal #(complex 1 0) (complex:str-> "+1"))
+  (is-equal #(complex 10 0) (complex:str-> "+10"))
+  ;; Just img
+  (is-equal #(complex 0 1) (complex:str-> "1i"))
+  (is-equal #(complex 0 10) (complex:str-> "10i"))
+  (is-equal #(complex 0 -1) (complex:str-> "-1i"))
+  (is-equal #(complex 0 -10) (complex:str-> "-10i"))
+  (is-equal #(complex 0 1) (complex:str-> "+1i"))
+  (is-equal #(complex 0 10) (complex:str-> "+10i"))
+  ;; Both
+  (is-equal #(complex 4 2) (complex:str-> "4 2i"))
+  (is-equal #(complex -4 -2) (complex:str-> "-4 -2i"))
+  (is-equal #(complex 4 2) (complex:str-> "+4 +2i")))

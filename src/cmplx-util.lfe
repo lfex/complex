@@ -2,6 +2,7 @@
   (export (get-version 0)
           (get-versions 0)
           (->str 1)
+          (str-> 1)
           (print-api-functions 0)
           (zero-check 2)))
 
@@ -29,6 +30,28 @@
 
 (defun ->str (r i pos)
   (io_lib:format "~p ~s~pi" `(,r ,pos ,i)))
+
+(defun str-> (z-str)
+  (apply #'complex:new/2
+         (parse (string:tokens z-str " "))))
+
+(defun parse
+  ((`(,r ,i)) (when (and (is_list r) (is_list i)))
+   (list (str->num r) (parse-img i)))
+  ((`(,num-str))
+   (if (== #\i (lists:nth (length num-str) num-str))
+     (list 0 (parse-img num-str))
+     (list (str->num num-str) 0))))
+
+(defun parse-img (i-str)
+  (str->num (car (string:tokens i-str "i"))))
+
+(defun str->num (num-str)
+  (try (list_to_integer num-str)
+    (catch (_
+            (try (list_to_float num-str)
+              (catch (_
+                      (error `#(conversion-error ,num-str)))))))))
 
 (defun check-function
   ((`#(,func-name ,arity))

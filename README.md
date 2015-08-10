@@ -174,6 +174,7 @@ complex:sign/1
 complex:sin/1
 complex:sinh/1
 complex:sqrt/1
+complex:str->/1
 complex:sub/2
 complex:tan/1
 complex:tanh/1

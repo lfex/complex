@@ -11,8 +11,11 @@
 (defun new ()
   (new 0 0))
 
-(defun new (r)
-  (new r 0))
+(defun new
+  ((z-str) (when (is_list z-str))
+   (cmplx-util:str-> z-str))
+  ((r)
+   (new r 0)))
 
 (defun new (r i)
   (make-complex real r img i))
