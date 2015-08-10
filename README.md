@@ -66,19 +66,19 @@ For the rest of the usage, we'll just ``slurp`` so that the calls are easier to 
 Using exponents to demonstrate the cyclic values of the powers of *i*:
 
 ```cl
-> (print (exp (i) 0))
+> (print (pow (i) 0))
 1 +0i
 ok
-> (print (exp (i) 1))
+> (print (pow (i) 1))
 0 +1i
 ok
-> (print (exp (i) 2))
+> (print (pow (i) 2))
 -1 +0i
 ok
-> (print (exp (i) 3))
+> (print (pow (i) 3))
 0 -1i
 ok
-> (print (exp (i) 4))
+> (print (pow (i) 4))
 1 +0i
 ok
 ```
