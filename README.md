@@ -157,9 +157,12 @@ complex:new/1
 complex:new/2
 complex:one/0
 complex:phase/1
+complex:polar->rect/1
+complex:polar->rect/2
 complex:pow/2
 complex:print/1
 complex:real/1
+complex:rect->polar/1
 complex:sec/1
 complex:sign/1
 complex:sin/1

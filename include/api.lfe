@@ -2,6 +2,7 @@
   `(progn ,@(kla:wrap-mod-funcs 'cmplx)
           ,@(kla:wrap-mod-funcs 'cmplx-arith)
           ,@(kla:wrap-mod-funcs 'cmplx-trig)
+          ,@(kla:wrap-mod-funcs 'cmplx-polar)
           ,@(kla:wrap-mod-funcs 'cmplx-exp)
           ,@(kla:wrap-mod-funcs 'cmplx-ops)
           ,@(kla:wrap-mod-funcs 'cmplx-io)
