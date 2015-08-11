@@ -3,6 +3,7 @@
           (get-versions 0)
           (->str 1)
           (str-> 1)
+          (get-match 1)
           (print-api-functions 0)
           (zero-check 2)))
 
@@ -29,22 +30,55 @@
    (->str r i "")))
 
 (defun ->str (r i pos)
-  (io_lib:format "~p ~s~pi" `(,r ,pos ,i)))
+  (io_lib:format "~p~s~pi" `(,r ,pos ,i)))
 
-(defun str-> (z-str)
-  (apply #'complex:new/2
-         (parse (string:tokens z-str " "))))
+(defun str->
+  ((z-atom) (when (is_atom z-atom))
+   (str-> (atom_to_list z-atom)))
+  ((z-str)
+   (case (get-match z-str)
+     (`#(match (,_ ,real))
+      (complex:new (str->num real)))
+     (`#(match (,_ ,real ,_ ,_))
+      (complex:new (str->num real)))
+     (`#(match (,_ ,real ,_ ,_ ,_))
+      (complex:new (str->num real)))
+     (`#(match (,_ () ,_ ,_ ,_ ,_ ,img))
+      (complex:new (str->num img)))
+     (`#(match (,_ () ,_ ,_ ,_ ,_ ,img ,_ ,_))
+      (complex:new (str->num img)))
+     (`#(match (,_ () ,_ ,_ ,_ ,_ ,img ,_ ,_ ,_))
+      (complex:new (str->num img)))
+     (`#(match (,_ ,real ,_ ,_ ,_ ,_ ,img))
+      (complex:new (str->num real)
+                   (str->num img)))
+     (`#(match (,_ ,real ,_ ,_ ,_ ,_ ,img ,_ ,_))
+      (complex:new (str->num real)
+                   (str->num img)))
+     (`#(match (,_ ,real ,_ ,_ ,_ ,_ ,img ,_ ,_ ,_))
+      (complex:new (str->num real)
+                   (str->num img))))))
 
-(defun parse
-  ((`(,r ,i)) (when (and (is_list r) (is_list i)))
-   (list (str->num r) (parse-img i)))
-  ((`(,num-str))
-   (if (== #\i (lists:nth (length num-str) num-str))
-     (list 0 (parse-img num-str))
-     (list (str->num num-str) 0))))
+(defun get-pattern ()
+  (let* ((begin "^(")
+         (end ")$")
+         (sign "[-+]")
+         (int "\\d+")
+         (frac "(\\.\\d+)")
+         (sci "([eE][+-]?\\d+)?")
+         (real (++ "(" sign "?" int "(" frac sci ")?)?"))
+         (img (++ "((" sign int "(" frac sci ")?)[iIjJ])?")))
+    (get-pattern
+     (re:compile (++ begin real img end)))))
 
-(defun parse-img (i-str)
-  (str->num (car (string:tokens i-str "i"))))
+(defun get-pattern
+  ((`#(ok ,pattern))
+   pattern)
+  ((x)
+   `#(error ,x)))
+
+(defun get-match (z-str)
+    (re:run z-str (get-pattern) '(#(capture all_but_first list))))
 
 (defun str->num (num-str)
   (try (list_to_integer num-str)
@@ -63,6 +97,7 @@
                  loaded-complex-api
                  loaded-complex
                  zero-check
+                 get-match
                  print-api-functions)))
      (if (lists:member func-name skip)
        'false

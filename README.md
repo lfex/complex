@@ -50,13 +50,29 @@ ok
 You can also create a new complex number using a string value:
 
 ```cl
-> (complex:new "4 -2i")
+> (complex:new "4-2i")
 #(complex 4 -2)
-> (complex:new "4 2i")
-#(complex 4 2)
-> (complex:new "4 +2i")
+> (complex:new "4+2i")
 #(complex 4 2)
 ```
+
+There are rules for using complex strings, though:
+
+* there can be no spaces in the complex string
+* you must always include the real part, even if the value is zero:
+  ``(complex:new "0+2i")``
+* the imaginary part must always include the number, even if the
+  component value is ``1``: ``(complex:new "2+1i")``
+
+Optional usage:
+
+* if the imaginary component is zero, you may leave it
+  off: ``(complex:new "2")``
+* you may use ``i``, ``j``, ``I``, or ``J`` to indicate the imaginary
+  part: ``(complex:new "-4+2j")``
+* you may use floating point values: ``(complex:new "1.2-3.4i")``
+* you may use scientific notation:
+  ``(complex:new "1.2e3-4.5e-6i")``
 
 Convenience functions:
 
@@ -78,19 +94,19 @@ Using exponents to demonstrate the cyclic values of the powers of *i*:
 
 ```cl
 > (print (pow (i) 0))
-1 +0i
+1+0i
 ok
 > (print (pow (i) 1))
-0 +1i
+0+1i
 ok
 > (print (pow (i) 2))
--1 +0i
+-1+0i
 ok
 > (print (pow (i) 3))
-0 -1i
+0-1i
 ok
 > (print (pow (i) 4))
-1 +0i
+1+0i
 ok
 ```
 
@@ -129,7 +145,7 @@ true
 
 ```cl
 > (print (sqrt (complex -1 0)))
-0.0 +1.0i
+0+1i
 ok
 > (eq (sqrt (complex -1 0)) (i))
 true
