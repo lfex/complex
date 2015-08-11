@@ -177,8 +177,14 @@ complex:->atom/1
 complex:->str/1
 complex:abs/1
 complex:abs/2
+complex:acos/1
+complex:acot/1
+complex:acsc/1
 complex:add/2
 complex:arg/1
+complex:asec/1
+complex:asin/1
+complex:atan/1
 complex:atom->/1
 complex:complex/2
 complex:complex?/1

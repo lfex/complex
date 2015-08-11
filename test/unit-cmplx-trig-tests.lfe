@@ -73,3 +73,35 @@
   (is (complex:eq #(complex -0.7615941559557649 0)
                   (complex:coth (z2))
                   '(#(tol 1.0e-15)))))
+
+;; Inverse trigonometric functions
+
+(deftest asin
+  (is (complex:eq #(complex 0.5076856578639746 1.3492323556536476)
+                  (complex:asin (z2))
+                  '(#(tol 1.0e-15)))))
+
+(deftest acos
+  (is (complex:eq #(complex 1.0631106689309222 -1.349232355653647)
+                  (complex:acos (z2))
+                  '(#(tol 1.0e-15)))))
+
+(deftest atan
+  (is (complex:eq #(complex 1.2302200294351602 0.43682712862323564)
+                  (complex:atan (z2))
+                  '(#(tol 1.0e-15)))))
+
+(deftest acsc
+  (is (complex:eq #(complex 0.2641409023818012 -0.45358107907660455)
+                  (complex:acsc (z2))
+                  '(#(tol 1.0e-15)))))
+
+(deftest asec
+  (is (complex:eq #(complex 1.3066554244130952 0.45358107907660455)
+                  (complex:asec (z2))
+                  '(#(tol 1.0e-15)))))
+
+(deftest acot
+  (is (complex:eq #(complex 0.34057629735973644 -0.4368271286232357)
+                  (complex:acot (z2))
+                  '(#(tol 1.0e-15)))))
