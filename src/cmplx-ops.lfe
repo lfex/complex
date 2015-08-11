@@ -7,12 +7,20 @@
           (eq 3)
           (eeq 2)
           (conj 1)
-          (modulus 1)
+          (modsq 1)
+          (modulus 1) (modulus 2)
           (abs 1) (abs 2)
           (inv 1)
           (arg 1) (arg 2)
           (phase 1)
-          (sqrt 1)))
+          (sqrt 1))
+  (import (from complex
+                (complex 2)
+                (add 2)
+                (sub 2)
+                (mult 2)
+                (div 2)
+                (real 1))))
 
 (include-lib "complex/include/data-types.lfe")
 (include-lib "complex/include/options.lfe")
@@ -38,7 +46,7 @@
 
 (defun neg
   (((match-complex real r img i))
-   (complex:new (* -1 r) (* -1 i))))
+   (complex (* -1 r) (* -1 i))))
 
 ;; Equality:
 ;;
@@ -101,17 +109,23 @@
 
 (defun conj
   (((match-complex real r img i))
-   (complex:new r (* -1 i))))
+   (complex r (* -1 i))))
+
+(defun modsq (z)
+  (mult z (conj z)))
 
 (defun modulus (z)
-  (cmplx-arith:mult z (conj z)))
+  (math:sqrt (real (modsq z))))
+
+(defun modulus
+  ((z #(complex))
+   (complex (modulus z) 0)))
 
 (defun abs (z)
-  (math:sqrt (complex:real (modulus z))))
+  (modulus z))
 
-(defun abs
-  ((z #(complex))
-   (complex:new (abs z) 0)))
+(defun abs (z opt)
+  (modulus z opt))
 
 ;; Inverse:
 ;;
@@ -121,7 +135,7 @@
 ;; #(complex 0.08823529411764706 0.14705882352941177)
 
 (defun inv (z)
-  (complex:div (conj z) (modulus z)))
+  (div (conj z) (modsq z)))
 
 (defun arg
   (((match-complex real r img i))
@@ -134,7 +148,7 @@
   ;;  (- (math:atan2 i r) (math:pi)))
   ;; ((r i) (when (and (< r 0) (>= i 0)))
   ;;  (+ (math:atan2 i r) (math:pi)))
-  ((r i) (when (and (== r 0) (== i 0)))
+  ((r i) (when (andalso (== r 0) (== i 0)))
    'undefined)
   ((r i)
    (math:atan2 i r))
@@ -162,5 +176,5 @@
           (neg-r (* -1 r))
           (r2 (math:sqrt (/ (+ r abs-z) 2)))
           (i2 (* (sign i) (math:sqrt (/ (+ neg-r abs-z) 2)))))
-     (complex:new r2 i2))))
+     (complex r2 i2))))
 

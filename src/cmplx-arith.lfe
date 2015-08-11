@@ -56,7 +56,7 @@
 ;; #(complex -1.4 -2.2)
 ;;
 (defun div (z1 z2)
-  (let* ((denom (complex-real (cmplx-ops:modulus z2)))
-         (z3 (mult z1 (cmplx-ops:conj z2))))
-    (complex:new (/ (complex-real z3) denom)
-                 (/ (complex-img z3) denom))))
+  (let* ((denom (complex:real (complex:modsq z2)))
+         (z3 (mult z1 (complex:conj z2))))
+    (complex:new (/ (complex:real z3) denom)
+                 (/ (complex:img z3) denom))))

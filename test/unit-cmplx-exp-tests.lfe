@@ -43,6 +43,22 @@
   (is (complex:eq #(complex -7 24)
                   (complex:pow (z2) 4))))
 
+(deftest pow-roots
+  (is (complex:eq #(complex 1.455346690225355 0.34356074972251255)
+                  (complex:pow (z2) 0.5)))
+  (is (complex:eq #(complex 1.3560696537818155 0.2544190103116233)
+                  (complex:pow (z2) 0.4)))
+  (is (complex:eq #(complex 1.2607549678168408 0.1765035631875992)
+                  (complex:pow (z2) 0.3)))
+  (is (complex:eq #(complex 1.169572425128737 0.10876582110065519)
+                  (complex:pow (z2) 0.2)))
+  (is (complex:eq #(complex 1.0826336795557296 0.05023205131826696)
+                  (complex:pow (z2) 0.1))))
+
+(deftest pow-real-only
+  (is (complex:eq #(complex 16 0)
+                  (complex:pow 4 2))))
+
 (deftest exp
   (is (complex:eq #(complex 2.718281828459045 0)
                   (complex:exp (complex:one))))

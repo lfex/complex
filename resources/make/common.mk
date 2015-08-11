@@ -74,7 +74,8 @@ repl-no-deps: compile-no-deps repl-raw
 repl-raw:
 	@which clear >/dev/null 2>&1 && clear || printf "\033c"
 	@echo "Starting an LFE REPL ..."
-	@PATH=$(SCRIPT_PATH) ERL_LIBS=$(ERL_LIBS) $(LFETOOL) repl lfe +pc unicode
+	@PATH=$(SCRIPT_PATH) ERL_LIBS=$(ERL_LIBS) $(LFETOOL) repl lfe \
+	+pc unicode -pa $(TEST_OUT_DIR)
 
 shell: compile
 	@which clear >/dev/null 2>&1 && clear || printf "\033c"

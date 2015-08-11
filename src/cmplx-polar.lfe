@@ -3,7 +3,7 @@
           (polar->rect 1) (polar->rect 2)))
 
 (defun rect->polar (z)
-  (complex:new-polar (complex:abs z)
+  (complex:new-polar (complex:modulus z)
                      (complex:arg z)))
 
 (defun polar->rect (phi)

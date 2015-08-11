@@ -1,22 +1,67 @@
 (defmodule cmplx-exp
   (export (pow 2)
           (exp 1)
-          (ln 1)))
+          (ln 1))
+  (import (from complex
+                (complex 2)
+                (add 2)
+                (sub 2)
+                (mult 2)
+                (div 2)
+                (one 0)
+                (i 0)
+                (modulus 1)
+                (arg 1)
+                (sqrt 1)
+                (rect->polar 1)
+                (complex? 1)
+                (complex-polar? 1))))
 
 (include-lib "complex/include/data-types.lfe")
 
-(defun pow (z n)
+(defun pow
+  ((z n) (when (== n 0))
+   (complex:one))
+  ((z n) (when (and (> n -1) (< n 1)))
+   (root z n))
+  ((z n) (when (is_integer z))
+   (complex:new (math:pow z n) 0))
+  ((z n)
+   (integer-powers z n)))
+
+(defun integer-powers (z n)
   (lists:foldl (lambda (x acc)
-                 (complex:mult x acc))
-               (complex:one)
+                 (mult x acc))
+               (one)
                (lists:duplicate n z)))
+
+(defun root (z n)
+  (cond
+   ((complex? z)
+    (root-rect z n))
+   ((complex-polar? z)
+    (root-polar z n))
+   ('true
+    (complex:new (math:pow z n) 0))))
+
+(defun root-rect
+  ((z 0.5)
+   (complex:sqrt z))
+  ((z n)
+   (root-polar (rect->polar z) n)))
+
+(defun root-polar
+  (((match-complex-polar r r phi phi) n)
+   (mult (complex (math:pow r n) 0)
+         (complex (math:cos (* phi n))
+                  (math:sin (* phi n))))))
 
 (defun exp
   (((match-complex real r img i))
-   (complex:new (* (math:exp r) (math:cos i))
-                (* (math:exp r) (math:sin i)))))
+   (complex (* (math:exp r) (math:cos i))
+            (* (math:exp r) (math:sin i)))))
 
 (defun ln
   (((= (match-complex real r img i) z))
-   (complex:new (math:log (complex:abs z))
-                (complex:arg z))))
+   (complex (math:log (modulus z))
+            (arg z))))

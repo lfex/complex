@@ -4,7 +4,7 @@
           (complex? 1)
           (complex-polar? 1)
           (real 1)
-          (imag 1)
+          (img 1)
           (r 1) (distance 1)
           (phi 1) (angle 1)))
 
@@ -37,7 +37,7 @@
   (new-polar 1 phi))
 
 (defun new-polar (r phi)
-  (make-complex-polar r phi))
+  (make-complex-polar r r phi phi))
 
 (defun complex-polar (r phi)
   (new-polar r phi))
@@ -51,7 +51,7 @@
 (defun real (z)
   (complex-real z))
 
-(defun imag (z)
+(defun img (z)
   (complex-img z))
 
 (defun r (z-polar)

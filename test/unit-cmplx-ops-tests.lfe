@@ -20,11 +20,11 @@
   (is-equal #(complex -1 0) (complex:conj (unit-cmplx-tests:c3)))
   (is-equal #(complex -4 2) (complex:conj (unit-cmplx-tests:c4))))
 
-(deftest modulus
-  (is-equal #(complex 5 0) (complex:modulus (unit-cmplx-tests:c1)))
-  (is-equal #(complex 34 0) (complex:modulus (unit-cmplx-tests:c2)))
-  (is-equal #(complex 1 0) (complex:modulus (unit-cmplx-tests:c3)))
-  (is-equal #(complex 20 0) (complex:modulus (unit-cmplx-tests:c4))))
+(deftest modsq
+  (is-equal #(complex 5 0) (complex:modsq (unit-cmplx-tests:c1)))
+  (is-equal #(complex 34 0) (complex:modsq (unit-cmplx-tests:c2)))
+  (is-equal #(complex 1 0) (complex:modsq (unit-cmplx-tests:c3)))
+  (is-equal #(complex 20 0) (complex:modsq (unit-cmplx-tests:c4))))
 
 (deftest abs
   (is-equal 2.23606797749979 (complex:abs (unit-cmplx-tests:c1)))

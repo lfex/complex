@@ -170,7 +170,7 @@ See the [unit tests](tests) for a greater number of examples.
 
 ## API
 
-The list of functions supported by the complex library are as follows:
+The list of functions currently supported by the complex library are as follows:
 
 ```cl
 complex:->atom/1
@@ -212,10 +212,12 @@ complex:eq/2
 complex:eq/3
 complex:exp/1
 complex:i/0
-complex:imag/1
+complex:img/1
 complex:inv/1
 complex:ln/1
+complex:modsq/1
 complex:modulus/1
+complex:modulus/2
 complex:mult/2
 complex:neg/1
 complex:new/0
@@ -246,4 +248,3 @@ complex:tan/1
 complex:tanh/1
 ```
 
-This list is part of what's actually planned and in-progress. More coming soon!
