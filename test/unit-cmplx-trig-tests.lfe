@@ -105,3 +105,35 @@
   (is (complex:eq #(complex 0.34057629735973644 -0.4368271286232357)
                   (complex:acot (z2))
                   '(#(tol 1.0e-15)))))
+
+;; Inverse hyperbolic trigonometric functions
+
+(deftest asinh
+  (is (complex:eq #(complex 1.290542097300704 0.9331538843123816)
+                  (complex:asinh (z2))
+                  '(#(tol 1.0e-15)))))
+
+(deftest acosh
+  (is (complex:eq #(complex 1.349232355653647 1.0631106689309222)
+                  (complex:acosh (z2))
+                  '(#(tol 1.0e-15)))))
+
+(deftest atanh
+  (is (complex:eq #(complex 0.2409022331451228 1.1182850384116252)
+                  (complex:atanh (z2))
+                  '(#(tol 1.0e-15)))))
+
+(deftest acsch
+  (is (complex:eq #(complex 0.3144855040543597 -0.4461590911371423)
+                  (complex:acsch (z2))
+                  '(#(tol 1.0e-15)))))
+
+(deftest asech
+  (is (complex:eq #(complex 0.45358107907660455 -1.3066554244130952)
+                  (complex:asech (z2))
+                  '(#(tol 1.0e-15)))))
+
+(deftest acoth
+  (is (complex:eq #(complex 0.24090223314512274 -0.45251128838327137)
+                  (complex:acoth (z2))
+                  '(#(tol 1.0e-15)))))
