@@ -2,10 +2,9 @@
   (export (rect->polar 1)
           (polar->rect 1) (polar->rect 2)))
 
-(include-lib "complex/include/data-types.lfe")
-
 (defun rect->polar (z)
-  'noop)
+  (complex:new-polar (complex:abs z)
+                     (complex:arg z)))
 
 (defun polar->rect (phi)
   (polar->rect 1 phi))

@@ -10,7 +10,7 @@
           (modulus 1)
           (abs 1) (abs 2)
           (inv 1)
-          (arg 1)
+          (arg 1) (arg 2)
           (phase 1)
           (sqrt 1)))
 
@@ -92,7 +92,6 @@
      'true
      'false)))
 
-
 ;; Conjugate:
 ;;
 ;; > (complex:conj z1)
@@ -108,7 +107,7 @@
   (cmplx-arith:mult z (conj z)))
 
 (defun abs (z)
-  (math:sqrt (complex-real (modulus z))))
+  (math:sqrt (complex:real (modulus z))))
 
 (defun abs
   ((z #(complex))
@@ -126,7 +125,24 @@
 
 (defun arg
   (((match-complex real r img i))
-   (math:atan2 i r)))
+   (arg r i)))
+
+(defun arg
+  ;; ((r i) (when (> r 0))
+  ;;  (math:atan2 i r))
+  ;; ((r i) (when (and (< r 0) (< i 0)))
+  ;;  (- (math:atan2 i r) (math:pi)))
+  ;; ((r i) (when (and (< r 0) (>= i 0)))
+  ;;  (+ (math:atan2 i r) (math:pi)))
+  ((r i) (when (and (== r 0) (== i 0)))
+   'undefined)
+  ((r i)
+   (math:atan2 i r))
+  ;; ((r i) (when (and (== r 0) (> i 0)))
+  ;;  (/ (math:pi) 2))
+  ;; ((r i) (when (and (== r 0) (< i 0)))
+  ;;  (/ (math:pi -2)))
+  )
 
 (defun phase (z)
   (arg z))
