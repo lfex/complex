@@ -14,6 +14,8 @@
 (defun new
   ((z-str) (when (is_list z-str))
    (cmplx-util:str-> z-str))
+  ((z-atom) (when (is_atom z-atom))
+   (cmplx-util:atom-> z-atom))
   ((r)
    (new r 0)))
 

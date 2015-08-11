@@ -74,6 +74,21 @@ Optional usage:
 * you may use scientific notation:
   ``(complex:new "1.2e3-4.5e-6i")``
 
+Using the same rule, you may use atoms to create a new complex number:
+
+```cl
+> (complex:new '4-2i)
+#(complex 4 -2)
+> (complex:new '4.3+2.1i)
+#(complex 4.3 2.1)
+> (complex:new '4.3e10-2.1e-20j)
+#(complex 4.3e10 -2.1e-20)
+```
+
+However, do keep in mind that the use of atoms to create complex numbers
+should not be done automatically in large numbers, or you run the risk
+of exhuasting the Erlang atom table and thus crashing your VM.
+
 Convenience functions:
 
 ```cl
@@ -158,11 +173,13 @@ See the [unit tests](tests) for a greater number of examples.
 The list of functions supported by the complex library are as follows:
 
 ```cl
+complex:->atom/1
 complex:->str/1
 complex:abs/1
 complex:abs/2
 complex:add/2
 complex:arg/1
+complex:atom->/1
 complex:complex/2
 complex:complex?/1
 complex:conj/1

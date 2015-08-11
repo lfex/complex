@@ -3,6 +3,8 @@
           (get-versions 0)
           (->str 1)
           (str-> 1)
+          (->atom 1)
+          (atom-> 1)
           (get-match 1)
           (print-api-functions 0)
           (zero-check 2)))
@@ -32,9 +34,13 @@
 (defun ->str (r i pos)
   (io_lib:format "~p~s~pi" `(,r ,pos ,i)))
 
+(defun ->atom
+  (((match-complex real r img i)) (when (>= i 0))
+   (list_to_atom (->str r i "+")))
+  (((match-complex real r img i))
+   (list_to_atom (->str r i ""))))
+
 (defun str->
-  ((z-atom) (when (is_atom z-atom))
-   (str-> (atom_to_list z-atom)))
   ((z-str)
    (case (get-match z-str)
      (`#(match (,_ ,real))
@@ -58,6 +64,9 @@
      (`#(match (,_ ,real ,_ ,_ ,_ ,_ ,img ,_ ,_ ,_))
       (complex:new (str->num real)
                    (str->num img))))))
+
+(defun atom-> (atom)
+  (str-> (atom_to_list atom)))
 
 (defun get-pattern ()
   (let* ((begin "^(")
