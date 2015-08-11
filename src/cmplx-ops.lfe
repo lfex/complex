@@ -177,4 +177,3 @@
           (r2 (math:sqrt (/ (+ r abs-z) 2)))
           (i2 (* (sign i) (math:sqrt (/ (+ neg-r abs-z) 2)))))
      (complex r2 i2))))
-

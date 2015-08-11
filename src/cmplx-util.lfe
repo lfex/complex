@@ -32,7 +32,9 @@
    (->str r i "")))
 
 (defun ->str (r i pos)
-  (io_lib:format "~p~s~pi" `(,r ,pos ,i)))
+  (io_lib:format "~p~s~pi" `(,(zero-check r 1.0e-15)
+                             ,pos
+                             ,(zero-check i 1.0e-15))))
 
 (defun ->atom
   (((match-complex real r img i)) (when (>= i 0))

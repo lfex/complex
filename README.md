@@ -6,9 +6,10 @@
 
 ## Introduction
 
-This library provides a data type (LFE record) for complex numbers as well as
-many mathematical operations which support the complex data type. For a full
-list of functions in the API, see the bottom of this README file.
+This library provides complex number data types (LFE records for rectangular
+and polar complex numbers) as well as many mathematical operations which
+support the complex data type. For a full list of functions in the API,see
+the bottom of this README file.
 
 
 ## Installation
@@ -23,29 +24,44 @@ Just add it to your ``rebar.config`` deps:
       ]}.
 ```
 
-And then do the usual:
+And then do the usual, if your LFE project has the standard ``Makefile`` and includes:
 
 ```bash
-    $ make
+$ make
 ```
 
+or, if not, use ``rebar``:
+
+```bash
+$ rebar get-deps
+$ rebar compile
+```
+
+At this point, the complex library will be avialable in your project's dependencies.
 
 ## Usage
 
-Create some new complex numbers and print them:
+### Creating Complex Numbers
+
+Create some new complex numbers using the standard rectangular coordinates:
 
 ```cl
 > (set z1 (complex:new 4 -2))
 #(complex 4 -2)
 > (set z2 (complex:new 4 2))
 #(complex 4 2)
-> (complex:print z1)
-4 -2i
-ok
-> (complex:print z2)
-4 +2i
-ok
 ```
+
+Create complex numbers using polar coordinates:
+
+```cl
+> (set z3 (complex:new-polar 4 (* -0.5 (math:pi))))
+#(complex-polar 4 -1.5707963267948966)
+> (set z4 (complex:new-polar 4 (* 0.5 (math:pi))))
+#(complex-polar 4 1.5707963267948966)
+```
+
+### Creating from Strings
 
 You can also create a new complex number using a string value:
 
@@ -74,7 +90,9 @@ Optional usage:
 * you may use scientific notation:
   ``(complex:new "1.2e3-4.5e-6i")``
 
-Using the same rule, you may use atoms to create a new complex number:
+### Creating from Atoms
+
+Using the same rules, you may use atoms to create a new complex number:
 
 ```cl
 > (complex:new '4-2i)
@@ -89,14 +107,7 @@ However, do keep in mind that the use of atoms to create complex numbers
 should not be done automatically in large numbers, or you run the risk
 of exhuasting the Erlang atom table and thus crashing your VM.
 
-Convenience functions:
-
-```cl
-> (complex:one)
-#(complex 1 0)
-> (complex:i)
-#(complex 0 1)
-```
+### Convenience Functions
 
 For the rest of the usage, we'll just ``slurp`` so that the calls are easier to type:
 
@@ -104,6 +115,38 @@ For the rest of the usage, we'll just ``slurp`` so that the calls are easier to 
 > (slurp "src/complex.lfe")
 #(ok complex)
 ```
+
+#### Printing Complex Numbers
+
+Print the numbers we previously defined:
+
+```cl
+> (print z1)
+4-2i
+ok
+> (print z2)
+4+2i
+ok
+> (print z3)
+0-4.0i
+ok
+> (print z4)
+0+4.0i
+ok
+```
+
+#### Common Numbers
+
+```cl
+> (one)
+#(complex 1 0)
+> (i)
+#(complex 0 1)
+```
+
+### Math
+
+#### Powers
 
 Using exponents to demonstrate the cyclic values of the powers of *i*:
 
@@ -125,7 +168,7 @@ ok
 ok
 ```
 
-Complex arithmatic and operations:
+#### Arithmatic
 
 ```cl
 > (add (complex 4 2) (i))
@@ -141,6 +184,8 @@ Complex arithmatic and operations:
 Note that ``complex/2`` is an alias for ``new/2``; it just looks nicer
 when not using the module name.
 
+#### Operations
+
 ```cl
 > (conj z2)
 #(complex 4 -2)
@@ -152,15 +197,15 @@ true
 #(complex 0.2 0.1)
 > (inv z2)
 #(complex 0.2 -0.1)
-> (abs z1)
+> (modulus z1)
 4.47213595499958
-> (abs z1 #(complex))
+> (modulus z1 #(complex))
 #(complex 4.47213595499958 0)
 ```
 
 ```cl
-> (print (sqrt (complex -1 0)))
-0+1i
+> (sqrt (complex -1 0))
+#(complex 0.0 1.0)
 ok
 > (eq (sqrt (complex -1 0)) (i))
 true
