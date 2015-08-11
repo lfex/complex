@@ -22,18 +22,24 @@
 (defun pow
   ((z n) (when (== n 0))
    (complex:one))
-  ((z n) (when (and (> n -1) (< n 1)))
-   (root z n))
   ((z n) (when (is_integer z))
    (complex:new (math:pow z n) 0))
-  ((z n)
-   (integer-powers z n)))
+  ((z n) (when (>= n 1))
+   (positive-integer-powers z n))
+  ((z n) (when (and (> n -1) (< n 1)))
+   (root z n))
+  ((z n) (when (=< n -1))
+   (negative-integer-powers z n)))
 
-(defun integer-powers (z n)
+(defun positive-integer-powers (z n)
   (lists:foldl (lambda (x acc)
                  (mult x acc))
                (one)
                (lists:duplicate n z)))
+
+(defun negative-integer-powers (z n)
+  (complex:div (complex:one)
+               (positive-integer-powers z (abs n))))
 
 (defun root (z n)
   (cond

@@ -43,6 +43,16 @@
   (is (complex:eq #(complex -7 24)
                   (complex:pow (z2) 4))))
 
+(deftest pow-cmplx-negative
+  (is (complex:eq #(complex 0.4 -0.2)
+                  (complex:pow (z2) -1)))
+  (is (complex:eq #(complex 0.12 -0.16)
+                  (complex:pow (z2) -2)))
+  (is (complex:eq #(complex 0.016 -0.088)
+                  (complex:pow (z2) -3)))
+  (is (complex:eq #(complex -0.0112 -0.0384)
+                  (complex:pow (z2) -4))))
+
 (deftest pow-roots
   (is (complex:eq #(complex 1.455346690225355 0.34356074972251255)
                   (complex:pow (z2) 0.5)))
