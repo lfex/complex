@@ -12,7 +12,11 @@
                 (mult 2)
                 (div 2)
                 (one 0)
+                (two 0)
+                (-two 0)
                 (i 0)
+                (-i 0)
+                (i/2 0)
                 (ln 1)
                 (sqrt 1)
                 (pow 2))))
@@ -80,14 +84,14 @@
 
 (defun asin (z)
   (mult
-   (complex 0 -1)
+   (-i)
    (ln (add (mult z (i))
             (sqrt
              (sub (one) (pow z 2)))))))
 
 (defun acos (z)
   (mult
-   (complex 0 -1)
+   (-i)
    (ln (add z (mult (i)
                     (sqrt
                      (sub (one)
@@ -95,13 +99,13 @@
 
 (defun atan (z)
   (mult
-   (complex 0 0.5)
+   (i/2)
    (ln (div (add (i) z)
             (sub (i) z)))))
 
 (defun acsc (z)
   (mult
-   (complex 0 -1)
+   (-i)
    (ln (add (div (i) z)
             (sqrt (sub (one)
                        (div (one)
@@ -118,10 +122,10 @@
 (defun acot (z)
   (sub
    (mult
-    (complex 0 0.5)
+    (i/2)
     (ln (sub (one) (div (i) z))))
    (mult
-    (complex 0 0.5)
+    (i/2)
     (ln (add (one) (div (i) z))))))
 
 ;; Inverse hyperbolic trigonometric functions
@@ -139,9 +143,9 @@
 (defun atanh (z)
   (add
    (div (ln (sub (one) z))
-        (complex -2 0))
+        (-two))
    (div (ln (add (one) z))
-        (complex 2 0))))
+        (two))))
 
 (defun acsch (z)
   (ln (add
@@ -165,7 +169,7 @@
   (add
    (div (ln (sub (one)
                  (div (one) z)))
-        (complex -2 0))
+        (-two))
    (div (ln (add (one)
                  (div (one) z)))
-        (complex 2 0))))
+        (two))))

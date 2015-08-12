@@ -204,10 +204,10 @@ true
 ```
 
 ```cl
-> (sqrt (complex -1 0))
+> (sqrt (-one))
 #(complex 0.0 1.0)
 ok
-> (eq (sqrt (complex -1 0)) (i))
+> (eq (sqrt (-one)) (i))
 true
 ```
 
@@ -218,8 +218,16 @@ See the [unit tests](tests) for a greater number of examples.
 The list of functions currently supported by the complex library are as follows:
 
 ```cl
+complex:-2pi/0
 complex:->atom/1
 complex:->str/1
+complex:-i/0
+complex:-i/2/0
+complex:-one/0
+complex:-pi/0
+complex:-pi/2/0
+complex:-two/0
+complex:2pi/0
 complex:abs/1
 complex:abs/2
 complex:acos/1
@@ -252,11 +260,13 @@ complex:csc/1
 complex:csch/1
 complex:distance/1
 complex:div/2
+complex:e/0
 complex:eeq/2
 complex:eq/2
 complex:eq/3
 complex:exp/1
 complex:i/0
+complex:i/2/0
 complex:img/1
 complex:inv/1
 complex:ln/1
@@ -274,6 +284,8 @@ complex:new-polar/2
 complex:one/0
 complex:phase/1
 complex:phi/1
+complex:pi/0
+complex:pi/2/0
 complex:polar->rect/1
 complex:polar->rect/2
 complex:pow/2
@@ -291,5 +303,6 @@ complex:str->/1
 complex:sub/2
 complex:tan/1
 complex:tanh/1
+complex:two/0
 ```
 

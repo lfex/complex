@@ -1,5 +1,6 @@
 (defmacro generate-cmplx-api-wrappers ()
   `(progn ,@(kla:wrap-mod-funcs 'cmplx)
+          ,@(kla:wrap-mod-funcs 'cmplx-const)
           ,@(kla:wrap-mod-funcs 'cmplx-arith)
           ,@(kla:wrap-mod-funcs 'cmplx-trig)
           ,@(kla:wrap-mod-funcs 'cmplx-polar)

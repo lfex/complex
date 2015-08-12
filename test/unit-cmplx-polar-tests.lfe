@@ -17,3 +17,7 @@
   (is (complex:eq #(complex 1 0)
                   (complex:polar->rect -1 (math:pi))
                   '(#(tol 1e-15)))))
+
+(deftest rect->polar
+  (is (complex:eq `#(complex-polar 1 ,(/ (math:pi) 2))
+                  (complex:rect->polar (complex:new 0 1)))))

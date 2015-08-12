@@ -1,7 +1,5 @@
 (defmodule cmplx-ops
-  (export (one 0)
-          (i 0)
-          (sign 1)
+  (export (sign 1)
           (neg 1)
           (eq 2)
           (eq 3)
@@ -24,12 +22,6 @@
 
 (include-lib "complex/include/data-types.lfe")
 (include-lib "complex/include/options.lfe")
-
-(defun one ()
-  (complex:new 1 0))
-
-(defun i ()
-  (complex:new 0 1))
 
 (defun sign
   ((x) (when (< x 0))
@@ -61,6 +53,12 @@
     (match-complex real r2 img i2))
    (if (and (== r1 r2)
             (== i1 i2))
+     'true
+     'false))
+  (((match-complex-polar r r1 phi phi1)
+    (match-complex-polar r r2 phi phi2))
+   (if (and (== r1 r2)
+            (== phi1 phi2))
      'true
      'false)))
 

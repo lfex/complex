@@ -38,7 +38,7 @@
                (lists:duplicate n z)))
 
 (defun negative-integer-powers (z n)
-  (complex:div (complex:one)
+  (complex:div (one)
                (positive-integer-powers z (abs n))))
 
 (defun root (z n)
