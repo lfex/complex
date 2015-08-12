@@ -3,8 +3,8 @@
   img)
 
 (defrecord complex-polar
-  r
-  phi)
+  mod
+  arg)
 
 (defun loaded-complex-data-types ()
   "This is just a dummy function for display purposes when including from the

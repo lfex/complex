@@ -37,7 +37,7 @@
   (new-polar 1 phi))
 
 (defun new-polar (r phi)
-  (make-complex-polar r r phi phi))
+  (make-complex-polar mod r arg phi))
 
 (defun complex-polar (r phi)
   (new-polar r phi))
@@ -55,13 +55,13 @@
   (complex-img z))
 
 (defun r (z-polar)
-  (complex-polar-r z-polar))
+  (complex-polar-mod z-polar))
 
 (defun distance (z-polar)
   (r z-polar))
 
 (defun phi (z-polar)
-  (complex-polar-phi z-polar))
+  (complex-polar-arg z-polar))
 
 (defun angle (z-polar)
   (phi z-polar))

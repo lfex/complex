@@ -55,8 +55,8 @@
             (== i1 i2))
      'true
      'false))
-  (((match-complex-polar r r1 phi phi1)
-    (match-complex-polar r r2 phi phi2))
+  (((match-complex-polar mod r1 arg phi1)
+    (match-complex-polar mod r2 arg phi2))
    (if (and (== r1 r2)
             (== phi1 phi2))
      'true
@@ -112,8 +112,11 @@
 (defun modsq (z)
   (mult z (conj z)))
 
-(defun modulus (z)
-  (math:sqrt (real (modsq z))))
+(defun modulus
+  (((match-complex-polar mod r))
+   r)
+  ((z)
+   (math:sqrt (real (modsq z)))))
 
 (defun modulus
   ((z #(complex))
@@ -137,7 +140,9 @@
 
 (defun arg
   (((match-complex real r img i))
-   (arg r i)))
+   (arg r i))
+  (((match-complex-polar arg phi))
+   phi))
 
 (defun arg
   ;; ((r i) (when (> r 0))

@@ -135,13 +135,24 @@ ok
 ok
 ```
 
+Note that ``print/1`` will convert a polar coordinate to rectangular; thus the
+last two above.
+
 #### Common Numbers
 
 ```cl
 > (one)
 #(complex 1 0)
+> (two)
+#(complex 2 0)
 > (i)
 #(complex 0 1)
+> (pi)
+#(complex 3.141592653589793 0)
+> (e)
+#(complex 2.718281828459045 0)
+> (-pi/2)
+#(complex -1.5707963267948966 0)
 ```
 
 ### Math
@@ -166,6 +177,26 @@ ok
 > (print (pow (i) 4))
 1+0i
 ok
+```
+
+Negative powers are supported:
+
+```cl
+> (pow (pi) -2)
+#(complex 0.10132118364233778 0.0)
+> (pow (two) -4)
+#(complex 0.0625 0.0)
+```
+
+As are fractional powers (roots):
+
+```cl
+> (pow 16 (/ 1 2))
+#(complex 4.0 0)
+> (pow 16 (/ 1 4))
+#(complex 2.0 0)
+> (pow 16 (/ 1 8))
+#(complex 1.4142135623730951 0)
 ```
 
 #### Arithmatic
@@ -201,6 +232,10 @@ true
 4.47213595499958
 > (modulus z1 #(complex))
 #(complex 4.47213595499958 0)
+> (modulus (complex-polar 4 (math:pi)))
+4
+> (arg (complex-polar 4 (math:pi)))
+3.141592653589793
 ```
 
 ```cl

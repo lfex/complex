@@ -57,7 +57,7 @@
    (root-polar (rect->polar z) n)))
 
 (defun root-polar
-  (((match-complex-polar r r phi phi) n)
+  (((match-complex-polar mod r arg phi) n)
    (mult (complex (math:pow r n) 0)
          (complex (math:cos (* phi n))
                   (math:sin (* phi n))))))
