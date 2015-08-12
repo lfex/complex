@@ -81,7 +81,7 @@
   (is (complex:eq #(complex 0.0 0.0)
                   (complex:ln (complex:one))))
   (is (complex:eq #(complex 0.6931471805599453 0.0)
-                  (complex:ln (complex:new 2 0)))))
+                  (complex:ln (z1)))))
 
 (deftest exp-ln-equality
   (is (complex:eq (complex:i)

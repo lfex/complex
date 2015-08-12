@@ -17,7 +17,12 @@
   (is-equal (c2) (complex:new "3-5i"))
   (is-equal (c3) (complex:new "-1"))
   (is-equal (c4) (complex:new "-4-2i"))
-  (is-equal #(complex 0 2) (complex:new "0+2i")))
+  (is-equal #(complex 0 2) (complex:new "0+2i"))
+  (is-equal (c1) (complex:new '1+2i))
+  (is-equal (c2) (complex:new '3-5i))
+  (is-equal (c3) (complex:new '-1))
+  (is-equal (c4) (complex:new '-4-2i))
+  (is-equal #(complex 0 2) (complex:new '0+2i)))
 
 (deftest new-2
   (is-equal #(complex 4 0) (c6)))
