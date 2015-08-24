@@ -1,8 +1,8 @@
-# complex
+# complex [![Build Status][travis-badge]][travis]
 
 *LFE support for numbers both real and imagined*
 
-<img src="resources/images/complex-function-crop-x250.png" />
+[![Complex project logo][logo]][logo]
 
 ## Table of Contents
 
@@ -358,3 +358,8 @@ complex:tanh/1
 complex:two/0
 ```
 
+<!-- Named page links below: /-->
+
+[travis]: https://travis-ci.org/lfex/complex
+[travis-badge]: https://travis-ci.org/lfex/complex.png?branch=master
+[logo]: resources/images/complex-function-crop-x250.png
