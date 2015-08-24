@@ -3,6 +3,7 @@ language: erlang
 # The following is needed for YAWS projects
 before_script:
   - make get-lfetool
+  - make get-rebar
 script:
   - make check
 notifications:
