@@ -20,7 +20,7 @@
 (include-lib "complex/include/data-types.lfe")
 
 (defun pow
-  ((z n) (when (== n 0))
+  ((_ 0)
    (complex:one))
   ((z n) (when (is_integer z))
    (complex:new (math:pow z n) 0))
@@ -71,3 +71,4 @@
   (((= (match-complex real r img i) z))
    (complex (math:log (modulus z))
             (arg z))))
+
