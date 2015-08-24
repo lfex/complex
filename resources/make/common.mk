@@ -10,7 +10,7 @@ SOURCE_DIR = ./src
 OUT_DIR = ./ebin
 TEST_DIR = ./test
 TEST_OUT_DIR = ./.eunit
-SCRIPT_PATH=$(DEPS)/lfe/bin:.:./bin:"$(PATH)":/usr/local/bin
+SCRIPT_PATH=$(BIN_DIR):$(DEPS)/lfe/bin:.:./bin:"$(PATH)":/usr/local/bin
 ifeq ($(shell which lfetool),)
 LFETOOL=$(BIN_DIR)/lfetool
 else
@@ -33,6 +33,11 @@ get-lfetool: $(BIN_DIR)
 	chmod 755 ./lfetool && \
 	mv ./lfetool $(BIN_DIR)
 
+get-rebar: $(BIN_DIR)
+	curl -L -o ./rebar https://github.com/rebar/rebar/wiki/rebar && \
+	chmod 755 ./rebar && \
+	mv ./rebar $(BIN_DIR)
+	
 get-version:
 	@PATH=$(SCRIPT_PATH) $(LFETOOL) info version
 	@echo "Erlang/OTP, LFE, & library versions:"
