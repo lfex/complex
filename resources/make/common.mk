@@ -104,7 +104,7 @@ check-integration-only:
 check-system-only:
 	@PATH=$(SCRIPT_PATH) ERL_LIBS=$(ERL_LIBS) $(LFETOOL) tests system
 
-check-unit-with-deps: get-deps compile compile-tests check-unit-only
+check-unit-with-deps: compile compile-tests check-unit-only
 check-unit: clean-eunit compile-no-deps check-unit-only
 check-integration: clean-eunit compile check-integration-only
 check-system: clean-eunit compile check-system-only
@@ -115,7 +115,10 @@ check-all: get-deps clean-eunit compile-no-deps
 
 check: check-unit-with-deps
 
-check-travis: $(LFETOOL) check
+check-travis: compile
+	rm -rf ~/.lfe
+	make compile-tests
+	make check-unit-only
 
 push-all:
 	@echo "Pusing code to github ..."
