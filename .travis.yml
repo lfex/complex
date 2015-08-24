@@ -5,7 +5,7 @@ before_script:
   - make get-lfetool
   - make get-rebar
 script:
-  - make check
+  - make check-travis
 notifications:
   #irc: "irc.freenode.org#YOUR-PROJECT-CHANNEL"
   recipients:
