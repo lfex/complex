@@ -116,7 +116,8 @@ check-all: get-deps clean-eunit compile-no-deps
 check: check-unit-with-deps
 
 check-travis: compile
-	rm -rf ~/.lfe
+	rm -rf ~/.lfe/libs
+	ln -s `pwd`/deps ~/.lfe/libs
 	make compile-tests
 	make check-unit-only
 
