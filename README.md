@@ -4,7 +4,24 @@
 
 <img src="resources/images/complex-function-crop-x250.png" />
 
-## Introduction
+## Table of Contents
+
+* [Introduction](#introduction-)
+* [Installation](#installation-)
+* [Usage](#usage-)
+  * [Creating Complex Numbers](#creating-complex-numbers-)
+    * [From Strings](#creating-from-strings-)
+    * [From Atoms](#creating-from-atoms-)
+  * [Convenience Functions](#convenience-functions-)
+    * [Printing](#printing-complex-numbers-)
+    * [Common Numbers](#common-numbers-)
+  * [Math](#math-)
+    * [Arithmatic](#arithmatic-)
+    * [Operations](#operations-)
+    * [Powers](#powers-)
+  * [API](#api-)
+
+## Introduction [&#x219F;](#table-of-contents)
 
 This library provides complex number data types (LFE records for rectangular
 and polar complex numbers) as well as many mathematical operations which
@@ -12,7 +29,7 @@ support the complex data type. For a full list of functions in the API,see
 the bottom of this README file.
 
 
-## Installation
+## Installation [&#x219F;](#table-of-contents)
 
 Just add it to your ``rebar.config`` deps:
 
@@ -39,9 +56,9 @@ $ rebar compile
 
 At this point, the complex library will be avialable in your project's dependencies.
 
-## Usage
+## Usage [&#x219F;](#table-of-contents)
 
-### Creating Complex Numbers
+### Creating Complex Numbers [&#x219F;](#table-of-contents)
 
 Create some new complex numbers using the standard rectangular coordinates:
 
@@ -61,7 +78,7 @@ Create complex numbers using polar coordinates:
 #(complex-polar 4 1.5707963267948966)
 ```
 
-### Creating from Strings
+#### Creating from Strings [&#x219F;](#table-of-contents)
 
 You can also create a new complex number using a string value:
 
@@ -90,7 +107,7 @@ Optional usage:
 * you may use scientific notation:
   ``(complex:new "1.2e3-4.5e-6i")``
 
-### Creating from Atoms
+#### Creating from Atoms [&#x219F;](#table-of-contents)
 
 Using the same rules, you may use atoms to create a new complex number:
 
@@ -107,7 +124,7 @@ However, do keep in mind that the use of atoms to create complex numbers
 should not be done automatically in large numbers, or you run the risk
 of exhuasting the Erlang atom table and thus crashing your VM.
 
-### Convenience Functions
+### Convenience Functions [&#x219F;](#table-of-contents)
 
 For the rest of the usage, we'll just ``slurp`` so that the calls are easier to type:
 
@@ -116,7 +133,7 @@ For the rest of the usage, we'll just ``slurp`` so that the calls are easier to 
 #(ok complex)
 ```
 
-#### Printing Complex Numbers
+#### Printing Complex Numbers [&#x219F;](#table-of-contents)
 
 Print the numbers we previously defined:
 
@@ -138,7 +155,7 @@ ok
 Note that ``print/1`` will convert a polar coordinate to rectangular; thus the
 last two above.
 
-#### Common Numbers
+#### Common Numbers [&#x219F;](#table-of-contents)
 
 ```cl
 > (one)
@@ -155,9 +172,56 @@ last two above.
 #(complex -1.5707963267948966 0)
 ```
 
-### Math
+### Math [&#x219F;](#table-of-contents)
 
-#### Powers
+#### Arithmatic [&#x219F;](#table-of-contents)
+
+```cl
+> (add (complex 4 2) (i))
+#(complex 4 3)
+> (sub (complex 4 2) (i))
+#(complex 4 1)
+> (mult (complex 4 2) (i))
+#(complex -2 4)
+> (div (complex 4 2) (i))
+#(complex 2.0 -4.0)
+```
+
+Note that ``complex/2`` is an alias for ``new/2``; it just looks nicer
+when not using the module name.
+
+#### Operations [&#x219F;](#table-of-contents)
+
+```cl
+> (conj z2)
+#(complex 4 -2)
+> (eq z1 z2)
+false
+> (eq z1 (conj z2))
+true
+> (inv z1)
+#(complex 0.2 0.1)
+> (inv z2)
+#(complex 0.2 -0.1)
+> (modulus z1)
+4.47213595499958
+> (modulus z1 #(complex))
+#(complex 4.47213595499958 0)
+> (modulus (complex-polar 4 (math:pi)))
+4
+> (arg (complex-polar 4 (math:pi)))
+3.141592653589793
+```
+
+```cl
+> (sqrt (-one))
+#(complex 0.0 1.0)
+ok
+> (eq (sqrt (-one)) (i))
+true
+```
+
+#### Powers [&#x219F;](#table-of-contents)
 
 Using exponents to demonstrate the cyclic values of the powers of *i*:
 
@@ -199,56 +263,9 @@ As are fractional powers (roots):
 #(complex 1.4142135623730951 0)
 ```
 
-#### Arithmatic
-
-```cl
-> (add (complex 4 2) (i))
-#(complex 4 3)
-> (sub (complex 4 2) (i))
-#(complex 4 1)
-> (mult (complex 4 2) (i))
-#(complex -2 4)
-> (div (complex 4 2) (i))
-#(complex 2.0 -4.0)
-```
-
-Note that ``complex/2`` is an alias for ``new/2``; it just looks nicer
-when not using the module name.
-
-#### Operations
-
-```cl
-> (conj z2)
-#(complex 4 -2)
-> (eq z1 z2)
-false
-> (eq z1 (conj z2))
-true
-> (inv z1)
-#(complex 0.2 0.1)
-> (inv z2)
-#(complex 0.2 -0.1)
-> (modulus z1)
-4.47213595499958
-> (modulus z1 #(complex))
-#(complex 4.47213595499958 0)
-> (modulus (complex-polar 4 (math:pi)))
-4
-> (arg (complex-polar 4 (math:pi)))
-3.141592653589793
-```
-
-```cl
-> (sqrt (-one))
-#(complex 0.0 1.0)
-ok
-> (eq (sqrt (-one)) (i))
-true
-```
-
 See the [unit tests](tests) for a greater number of examples.
 
-## API
+## API [&#x219F;](#table-of-contents)
 
 The list of functions currently supported by the complex library are as follows:
 
