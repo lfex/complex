@@ -19,7 +19,7 @@
     * [Arithmatic](#arithmatic-)
     * [Operations](#operations-)
     * [Powers](#powers-)
-  * [API](#api-)
+* [API](#api-)
 
 ## Introduction [&#x219F;](#table-of-contents)
 
