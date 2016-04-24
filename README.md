@@ -362,4 +362,4 @@ complex:two/0
 
 [travis]: https://travis-ci.org/lfex/complex
 [travis-badge]: https://travis-ci.org/lfex/complex.png?branch=master
-[logo]: resources/images/complex-function-crop-x250.png
+[logo]: priv/images/complex-function-crop-x250.png
