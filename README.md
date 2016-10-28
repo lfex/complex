@@ -363,7 +363,7 @@ complex:tanh/1
 complex:two/0
 ```
 
-## License [&#x219F;](#contents)
+## License [&#x219F;](#table-of-contents)
 
 Apache Version 2 License
 
