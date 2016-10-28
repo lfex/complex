@@ -1,8 +1,11 @@
-# complex [![Build Status][travis-badge]][travis]
+# complex
+
+[![Build Status][travis badge]][travis] [![LFE Versions][lfe badge]][lfe] [![Erlang Versions][erlang badge]][versions] [![Tags][github tags badge]][github tags] [![Downloads][hex downloads]][hex package]
 
 *LFE support for numbers both real and imagined*
 
 [![Complex project logo][logo]][logo]
+
 
 ## Table of Contents
 
@@ -20,6 +23,8 @@
     * [Operations](#operations-)
     * [Powers](#powers-)
 * [API](#api-)
+* [License](#license-)
+
 
 ## Introduction [&#x219F;](#table-of-contents)
 
@@ -358,8 +363,29 @@ complex:tanh/1
 complex:two/0
 ```
 
+## License [&#x219F;](#contents)
+
+Apache Version 2 License
+
+Copyright © 2015-2016, Duncan McGreggor <oubiwann@gmail.com>
+
+
+
 <!-- Named page links below: /-->
 
-[travis]: https://travis-ci.org/lfex/complex
-[travis-badge]: https://travis-ci.org/lfex/complex.png?branch=master
 [logo]: priv/images/complex-function-crop-x250.png
+[org]: https://github.com/lfex
+[github]: https://github.com/lfex/complex
+[gitlab]: https://gitlab.com/lfex/complex
+[travis]: https://travis-ci.org/lfex/complex
+[travis badge]: https://img.shields.io/travis/lfex/complex.svg
+[lfe]: https://github.com/rvirding/lfe
+[lfe badge]: https://img.shields.io/badge/lfe-1.2.0-blue.svg
+[erlang badge]: https://img.shields.io/badge/erlang-R15%20to%2019.1-blue.svg
+[versions]: https://github.com/lfex/complex/blob/master/.travis.yml
+[github tags]: https://github.com/lfex/complex/tags
+[github tags badge]: https://img.shields.io/github/tag/lfex/complex.svg
+[github downloads]: https://img.shields.io/github/downloads/lfex/complex/total.svg
+[hex badge]: https://img.shields.io/hexpm/v/complex.svg?maxAge=2592000
+[hex package]: https://hex.pm/packages/complex
+[hex downloads]: https://img.shields.io/hexpm/dt/complex.svg
