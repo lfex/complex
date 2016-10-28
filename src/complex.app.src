@@ -35,13 +35,13 @@
   {env, []},
 
   %% Package metadata:
-  {pkg_name, complex},
+  {pkg_name, complex_math},
   {maintainers, ["Duncan McGreggor"]},
   {licenses, ["Apache-2"]},
   {links,
    [{"GitHub", "https://github.com/lfex/complex"},
     {"Gitlab", "https://gitlab.com/lfex/complex"},
-    {"Hex", "https://hex.pm/packages/complex"}
+    {"Hex", "https://hex.pm/packages/complex_math"}
    ]}
  ]
 }.

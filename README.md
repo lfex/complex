@@ -386,6 +386,6 @@ Copyright © 2015-2016, Duncan McGreggor <oubiwann@gmail.com>
 [github tags]: https://github.com/lfex/complex/tags
 [github tags badge]: https://img.shields.io/github/tag/lfex/complex.svg
 [github downloads]: https://img.shields.io/github/downloads/lfex/complex/total.svg
-[hex badge]: https://img.shields.io/hexpm/v/complex.svg?maxAge=2592000
-[hex package]: https://hex.pm/packages/complex
-[hex downloads]: https://img.shields.io/hexpm/dt/complex.svg
+[hex badge]: https://img.shields.io/hexpm/v/complex_math.svg?maxAge=2592000
+[hex package]: https://hex.pm/packages/complex_math
+[hex downloads]: https://img.shields.io/hexpm/dt/complex_math.svg
