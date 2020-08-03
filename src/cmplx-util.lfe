@@ -1,28 +1,28 @@
 (defmodule cmplx-util
-  (export (get-version 0)
-          (get-versions 0)
-          (->str 1)
-          (str-> 1)
-          (->atom 1)
-          (atom-> 1)
-          (get-match 1)
-          (print-api-functions 0)
-          (zero-check 2)))
+  (export
+    (get-version 0)
+    (get-versions 0)
+    (->str 1)
+    (str-> 1)
+    (->atom 1)
+    (atom-> 1)
+    (get-match 1)
+    (print-api-functions 0)
+    (zero-check 2)))
 
 (include-lib "complex/include/data-types.lfe")
 
 (defun get-version ()
-  (lutil:get-app-version 'complex))
+  (rebar3_lfe_version:app_version 'complex))
 
 (defun get-versions ()
-  (++ (lutil:get-versions)
-      `(#(complex ,(get-version)))))
+  (rebar3_lfe_version:versions '(complex)))
 
 ;; Convert to string (list):
 ;;
-;; > (complex:->str c1)
+;; lfe> (complex:->str c1)
 ;; ("1" 32 "+" "2" 105)
-;; > (complex:->str c2)
+;; lfe> (complex:->str c2)
 ;; ("3" 32 () "-5" 105)
 
 (defun ->str

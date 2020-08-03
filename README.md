@@ -4,8 +4,7 @@
 
 *LFE support for numbers both real and imagined*
 
-[![Complex project logo][logo]][logo]
-
+[![Complex project logo][logo]][logo-large]
 
 ## Table of Contents
 
@@ -25,7 +24,6 @@
 * [API](#api-)
 * [License](#license-)
 
-
 ## Introduction [&#x219F;](#table-of-contents)
 
 This library provides complex number data types (LFE records for rectangular
@@ -33,30 +31,14 @@ and polar complex numbers) as well as many mathematical operations which
 support the complex data type. For a full list of functions in the API,see
 the bottom of this README file.
 
-
 ## Installation [&#x219F;](#table-of-contents)
 
-Just add it to your ``rebar.config`` deps:
+Just add it to your `rebar.config` deps:
 
 ```erlang
-  {deps, [
-    ...
-    {complex, ".*",
-      {git, "git@github.com:lfex/complex.git", "master"}}
-      ]}.
-```
-
-And then do the usual, if your LFE project has the standard ``Makefile`` and includes:
-
-```bash
-$ make
-```
-
-or, if not, use ``rebar``:
-
-```bash
-$ rebar get-deps
-$ rebar compile
+{deps, [
+    {complex, {git, "https://github.com/lfex/complex.git", {branch, "master"}}}
+  ]}.
 ```
 
 At this point, the complex library will be avialable in your project's dependencies.
@@ -67,19 +49,19 @@ At this point, the complex library will be avialable in your project's dependenc
 
 Create some new complex numbers using the standard rectangular coordinates:
 
-```cl
-> (set z1 (complex:new 4 -2))
+```lisp
+lfe> (set z1 (complex:new 4 -2))
 #(complex 4 -2)
-> (set z2 (complex:new 4 2))
+lfe> (set z2 (complex:new 4 2))
 #(complex 4 2)
 ```
 
 Create complex numbers using polar coordinates:
 
-```cl
-> (set z3 (complex:new-polar 4 (* -0.5 (math:pi))))
+```lisp
+lfe> (set z3 (complex:new-polar 4 (* -0.5 (math:pi))))
 #(complex-polar 4 -1.5707963267948966)
-> (set z4 (complex:new-polar 4 (* 0.5 (math:pi))))
+lfe> (set z4 (complex:new-polar 4 (* 0.5 (math:pi))))
 #(complex-polar 4 1.5707963267948966)
 ```
 
@@ -87,10 +69,10 @@ Create complex numbers using polar coordinates:
 
 You can also create a new complex number using a string value:
 
-```cl
-> (complex:new "4-2i")
+```lisp
+lfe> (complex:new "4-2i")
 #(complex 4 -2)
-> (complex:new "4+2i")
+lfe> (complex:new "4+2i")
 #(complex 4 2)
 ```
 
@@ -98,30 +80,30 @@ There are rules for using complex strings, though:
 
 * there can be no spaces in the complex string
 * you must always include the real part, even if the value is zero:
-  ``(complex:new "0+2i")``
+  `(complex:new "0+2i")`
 * the imaginary part must always include the number, even if the
-  component value is ``1``: ``(complex:new "2+1i")``
+  component value is `1`: `(complex:new "2+1i")`
 
 Optional usage:
 
 * if the imaginary component is zero, you may leave it
-  off: ``(complex:new "2")``
-* you may use ``i``, ``j``, ``I``, or ``J`` to indicate the imaginary
-  part: ``(complex:new "-4+2j")``
-* you may use floating point values: ``(complex:new "1.2-3.4i")``
+  off: `(complex:new "2")`
+* you may use `i`, `j`, `I`, or `J` to indicate the imaginary
+  part: `(complex:new "-4+2j")`
+* you may use floating point values: `(complex:new "1.2-3.4i")`
 * you may use scientific notation:
-  ``(complex:new "1.2e3-4.5e-6i")``
+  `(complex:new "1.2e3-4.5e-6i")`
 
 #### Creating from Atoms [&#x219F;](#table-of-contents)
 
 Using the same rules, you may use atoms to create a new complex number:
 
-```cl
-> (complex:new '4-2i)
+```lisp
+lfe> (complex:new '4-2i)
 #(complex 4 -2)
-> (complex:new '4.3+2.1i)
+lfe> (complex:new '4.3+2.1i)
 #(complex 4.3 2.1)
-> (complex:new '4.3e10-2.1e-20j)
+lfe> (complex:new '4.3e10-2.1e-20j)
 #(complex 4.3e10 -2.1e-20)
 ```
 
@@ -131,10 +113,10 @@ of exhuasting the Erlang atom table and thus crashing your VM.
 
 ### Convenience Functions [&#x219F;](#table-of-contents)
 
-For the rest of the usage, we'll just ``slurp`` so that the calls are easier to type:
+For the rest of the usage, we'll just `slurp` so that the calls are easier to type:
 
-```cl
-> (slurp "src/complex.lfe")
+```lisp
+lfe> (slurp "src/complex.lfe")
 #(ok complex)
 ```
 
@@ -142,38 +124,38 @@ For the rest of the usage, we'll just ``slurp`` so that the calls are easier to 
 
 Print the numbers we previously defined:
 
-```cl
-> (print z1)
+```lisp
+lfe> (format z1)
 4-2i
 ok
-> (print z2)
+lfe> (format z2)
 4+2i
 ok
-> (print z3)
+lfe> (format z3)
 0-4.0i
 ok
-> (print z4)
+lfe> (format z4)
 0+4.0i
 ok
 ```
 
-Note that ``print/1`` will convert a polar coordinate to rectangular; thus the
+Note that `format/1` will convert a polar coordinate to rectangular; thus the
 last two above.
 
 #### Common Numbers [&#x219F;](#table-of-contents)
 
-```cl
-> (one)
+```lisp
+lfe> (one)
 #(complex 1 0)
-> (two)
+lfe> (two)
 #(complex 2 0)
-> (i)
+lfe> (i)
 #(complex 0 1)
-> (pi)
+lfe> (pi)
 #(complex 3.141592653589793 0)
-> (e)
+lfe> (e)
 #(complex 2.718281828459045 0)
-> (-pi/2)
+lfe> (-pi/2)
 #(complex -1.5707963267948966 0)
 ```
 
@@ -181,48 +163,48 @@ last two above.
 
 #### Arithmatic [&#x219F;](#table-of-contents)
 
-```cl
-> (add (complex 4 2) (i))
+```lisp
+lfe> (add (complex 4 2) (i))
 #(complex 4 3)
-> (sub (complex 4 2) (i))
+lfe> (sub (complex 4 2) (i))
 #(complex 4 1)
-> (mult (complex 4 2) (i))
+lfe> (mult (complex 4 2) (i))
 #(complex -2 4)
-> (div (complex 4 2) (i))
+lfe> (div (complex 4 2) (i))
 #(complex 2.0 -4.0)
 ```
 
-Note that ``complex/2`` is an alias for ``new/2``; it just looks nicer
+Note that `complex/2` is an alias for `new/2`; it just looks nicer
 when not using the module name.
 
 #### Operations [&#x219F;](#table-of-contents)
 
-```cl
-> (conj z2)
+```lisp
+lfe> (conj z2)
 #(complex 4 -2)
-> (eq z1 z2)
+lfe> (eq z1 z2)
 false
-> (eq z1 (conj z2))
+lfe> (eq z1 (conj z2))
 true
-> (inv z1)
+lfe> (inv z1)
 #(complex 0.2 0.1)
-> (inv z2)
+lfe> (inv z2)
 #(complex 0.2 -0.1)
-> (modulus z1)
+lfe> (modulus z1)
 4.47213595499958
-> (modulus z1 #(complex))
+lfe> (modulus z1 #(complex))
 #(complex 4.47213595499958 0)
-> (modulus (complex-polar 4 (math:pi)))
+lfe> (modulus (complex-polar 4 (math:pi)))
 4
-> (arg (complex-polar 4 (math:pi)))
+lfe> (arg (complex-polar 4 (math:pi)))
 3.141592653589793
 ```
 
-```cl
-> (sqrt (-one))
+```lisp
+lfe> (sqrt (-one))
 #(complex 0.0 1.0)
 ok
-> (eq (sqrt (-one)) (i))
+lfe> (eq (sqrt (-one)) (i))
 true
 ```
 
@@ -230,41 +212,41 @@ true
 
 Using exponents to demonstrate the cyclic values of the powers of *i*:
 
-```cl
-> (print (pow (i) 0))
+```lisp
+lfe> (format (pow (i) 0))
 1+0i
 ok
-> (print (pow (i) 1))
+lfe> (format (pow (i) 1))
 0+1i
 ok
-> (print (pow (i) 2))
+lfe> (format (pow (i) 2))
 -1+0i
 ok
-> (print (pow (i) 3))
+lfe> (format (pow (i) 3))
 0-1i
 ok
-> (print (pow (i) 4))
+lfe> (format (pow (i) 4))
 1+0i
 ok
 ```
 
 Negative powers are supported:
 
-```cl
-> (pow (pi) -2)
+```lisp
+lfe> (pow (pi) -2)
 #(complex 0.10132118364233778 0.0)
-> (pow (two) -4)
+lfe> (pow (two) -4)
 #(complex 0.0625 0.0)
 ```
 
 As are fractional powers (roots):
 
-```cl
-> (pow 16 (/ 1 2))
+```lisp
+lfe> (pow 16 (/ 1 2))
 #(complex 4.0 0)
-> (pow 16 (/ 1 4))
+lfe> (pow 16 (/ 1 4))
 #(complex 2.0 0)
-> (pow 16 (/ 1 8))
+lfe> (pow 16 (/ 1 8))
 #(complex 1.4142135623730951 0)
 ```
 
@@ -274,7 +256,7 @@ See the [unit tests](tests) for a greater number of examples.
 
 The list of functions currently supported by the complex library are as follows:
 
-```cl
+```lisp
 complex:-2pi/0
 complex:->atom/1
 complex:->str/1
@@ -367,21 +349,20 @@ complex:two/0
 
 Apache Version 2 License
 
-Copyright © 2015-2016, Duncan McGreggor <oubiwann@gmail.com>
-
-
+Copyright © 2015-2020, Duncan McGreggor <oubiwann@gmail.com>
 
 <!-- Named page links below: /-->
 
 [logo]: priv/images/complex-function-crop-x250.png
+[logo-large]: priv/images/complex-function-crop-x1000.png
 [org]: https://github.com/lfex
 [github]: https://github.com/lfex/complex
 [gitlab]: https://gitlab.com/lfex/complex
 [travis]: https://travis-ci.org/lfex/complex
 [travis badge]: https://img.shields.io/travis/lfex/complex.svg
 [lfe]: https://github.com/rvirding/lfe
-[lfe badge]: https://img.shields.io/badge/lfe-1.2.0-blue.svg
-[erlang badge]: https://img.shields.io/badge/erlang-R15%20to%2019.1-blue.svg
+[lfe badge]: https://img.shields.io/badge/lfe-1.3.0-blue.svg
+[erlang badge]: https://img.shields.io/badge/erlang-19%20to%2023-blue.svg
 [versions]: https://github.com/lfex/complex/blob/master/.travis.yml
 [github tags]: https://github.com/lfex/complex/tags
 [github tags badge]: https://img.shields.io/github/tag/lfex/complex.svg
