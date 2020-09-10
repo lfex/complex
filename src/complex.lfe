@@ -56,10 +56,12 @@
   (export
     (rect->polar 1)
     (polar->rect 1)
-    (polar->rect 2)))
+    (polar->rect 2))
+  (compile
+   #(no_auto_import '(abs 1))))
 
-(include-lib "complex/include/data-types.lfe")
-(include-lib "complex/include/options.lfe")
+(include-lib "include/data-types.lfe")
+(include-lib "include/options.lfe")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;   Constructors   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -170,7 +172,7 @@
 (defun add
   (((match-complex real r1 img i1)
     (match-complex real r2 img i2))
-   (snew (+ r1 r2) (+ i1 i2))))
+   (new (+ r1 r2) (+ i1 i2))))
 
 ;; Subtracting:
 ;;
@@ -635,6 +637,6 @@
   (((= (match-complex) z))
    (io:format (++ (cmplx-util:->str z) "~n")))
   (((= (match-complex-polar) polar))
-   (print (polar->rect polar)))
+   (format (polar->rect polar)))
   ((x)
    (io:format "~p~n" (list x))))

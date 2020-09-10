@@ -10,7 +10,7 @@
     (print-api-functions 0)
     (zero-check 2)))
 
-(include-lib "complex/include/data-types.lfe")
+(include-lib "include/data-types.lfe")
 
 (defun get-version ()
   (rebar3_lfe_version:app_version 'complex))
@@ -93,9 +93,9 @@
 
 (defun str->num (num-str)
   (try (list_to_integer num-str)
-    (catch (_
+    (catch ((tuple _ _ _)
             (try (list_to_float num-str)
-              (catch (_
+              (catch ((tuple _ _ _)
                       (error `#(conversion-error ,num-str)))))))))
 
 (defun check-function
@@ -129,6 +129,6 @@
    (lists:sort (get-api-functions))))
 
 (defun zero-check (num tol)
-  (if (< (abs num) tol)
+  (if (< (erlang:abs num) tol)
     0
     num))
