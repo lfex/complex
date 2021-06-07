@@ -8,6 +8,10 @@ ebin/*
 bin/expm
 *.dump
 .rebar
+.eunit
+rebar/*
+.rebar/*
+rebar3.crashdump
 logs/*
 *~
 \#*\#
