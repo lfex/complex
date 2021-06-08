@@ -83,7 +83,7 @@
 
 (defun complex (r i)
   "This function is an alias for new/2 and is provided for aesthetic reasons:
-  it will look nicer in the REPL calling (complex 1 2) than (new 1 2)."
+  it looks nicer in the REPL calling (complex 1 2) than (new 1 2)."
   (new r i))
 
 (defun new-polar ()

@@ -12,6 +12,9 @@
 
 ;; Trigonometric functions
 
+;; !!!
+;; XXX failing! ALL OF THESE!!!
+
 (deftest sin
   (is (complex:eq #(complex 0 -1.1752011936438014)
                   (complex:sin (z1))

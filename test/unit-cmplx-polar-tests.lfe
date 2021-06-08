@@ -4,6 +4,7 @@
 
 (include-lib "ltest/include/ltest-macros.lfe")
 
+;; XXX failing!
 (deftest polar->rect
   (is (complex:eq #(complex 0 1)
                   (complex:polar->rect (/ (math:pi) 2))

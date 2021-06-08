@@ -29,6 +29,12 @@
                           (unit-cmplx-tests:c4))))
 
 (deftest div
+  (is-equal #(complex 1.0 0.0)
+            (complex:div (unit-cmplx-tests:c1)
+                         (unit-cmplx-tests:c1)))
+  (is-equal #(complex 1.0 0.0)
+            (complex:div (unit-cmplx-tests:c4)
+                         (unit-cmplx-tests:c4)))
   (is-equal #(complex -0.1 1.3)
             (complex:div (unit-cmplx-tests:c2)
                          (unit-cmplx-tests:c4)))

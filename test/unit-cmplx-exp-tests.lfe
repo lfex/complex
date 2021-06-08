@@ -43,6 +43,7 @@
   (is (complex:eq #(complex -7 24)
                   (complex:pow (z2) 4))))
 
+;; XXX failing!
 (deftest pow-cmplx-negative
   (is (complex:eq #(complex 0.4 -0.2)
                   (complex:pow (z2) -1)))
@@ -82,7 +83,7 @@
                   (complex:ln (complex:one))))
   (is (complex:eq #(complex 0.6931471805599453 0.0)
                   (complex:ln (z1)))))
-
+;; XXX failing!
 (deftest exp-ln-equality
   (is (complex:eq (complex:i)
                   (complex:ln
